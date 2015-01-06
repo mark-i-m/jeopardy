@@ -557,7 +557,7 @@ function TableTest() {
      */
     this.testSetRow = function() {
 
-        var t = new Table(rows, 0);
+        var t = new Table(rows, 1);
 
         for (var i = 1; i <= rows; i++) {
             t.setRow(i, i * rows + "");
@@ -571,7 +571,7 @@ function TableTest() {
      */
     this.testSetCol = function() {
 
-        var t = new Table(0, cols);
+        var t = new Table(1, cols);
 
         for (var i = 1; i <= cols; i++) {
             t.setCol(i, i + "");
