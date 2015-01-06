@@ -9,12 +9,11 @@ function runTests(tests){
         if(typeof(tests[ele]) == "function"){
             try{
                 (tests[ele])();
-                document.writeln("Test passed: " + ele + "<br />");
+                document.body.innerHTML += ("<span class='pass'>Test passed: " + ele + "</span><br />");
                 passed++;
             } catch(err){
-                document.writeln("Error running test: " + ele + "<br />");
-                document.writeln("|     " + err + "<br />");
-                // document.writeln("|     " + (new Error().stack) + "<br />");
+                document.body.innerHTML += ("<span class='fail'>Error running test: " + ele + "</span><br />");
+                document.body.innerHTML += ("<span class='error'>" + err + "</span><br />");
                 failed++;
             }
         }
@@ -22,40 +21,40 @@ function runTests(tests){
 
     var time2 = (new Date()).getTime();
 
-    document.writeln("<br />");
+    document.body.innerHTML += ("<br />");
 
-    document.writeln("Passed: " + passed + "<br />");
-    document.writeln("Failed: " + failed + "<br /><br />");
-    document.writeln(((time2 - time1)/1000) + "s elapsed <br />");
+    document.body.innerHTML += ("Passed: " + passed + "<br />");
+    document.body.innerHTML += ("Failed: " + failed + "<br /><br />");
+    document.body.innerHTML += (((time2 - time1)/1000) + "s elapsed <br />");
 
 }
 
 function assertTrue(expr){
     if(!expr)
-        throw "Assert true failed";
+        throw "Assert true failed <br />" + (new Error().stack.replace(/\n/g,"<br />"));
 }
 
 function assertFalse(expr){
     if(expr)
-        throw "Assert false failed";
+        throw "Assert false failed <br />" + (new Error().stack.replace(/\n/g,"<br />"));
 }
 
 function assertEquals(o1,o2){
     if(typeof(o1) != typeof(o2))
-        throw "Assert equals failed";
+        throw "Assert equals failed <br />" + (new Error().stack.replace(/\n/g,"<br />"));
 
     if(typeof(o1) == "object" && o1.hasOwnProperty("equals") && o2.hasOwnProperty("equals")){
         if(!o1.equals(o2))
-            throw "Assert equals failed";
+            throw "Assert equals failed <br />" + (new Error().stack.replace(/\n/g,"<br />"));
     }
     else{
         if(o1 != o2)
-            throw "Assert equals failed";
+            throw "Assert equals failed <br />" + (new Error().stack.replace(/\n/g,"<br />"));
     }
 }
 
 function fail(){
-    throw "Failed";
+    throw "Failed <br />" + (new Error().stack.replace(/\n/g,"<br />"));
 }
 
 /* Return an integer between 0(incl) and bound (excl) */
