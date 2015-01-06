@@ -2,9 +2,10 @@
 <html>
     <head>
         <title>GUI test</title>
-        <script type="text/javascript" src="table.js"></script>
-        <script type="text/javascript" src="gui.js"></script>
+        <script type="text/javascript" src="../../src/table/table.js"></script>
+        <script type="text/javascript" src="../../src/gui/gui.js"></script>
         <script type="text/javascript" src="guitest.js"></script>
+        <script type="text/javascript" src="../tests.js"></script>
         <link rel="stylesheet" type="text/css" href="guitest.css">
         <style type="text/css">
             body{
@@ -24,7 +25,7 @@
             }
         </style>
     </head>
-    <body onload="runTest();">
+    <body onload="runTest(new GuiTest());">
         <div id="table_cont"></div>
     </body>
 </html>

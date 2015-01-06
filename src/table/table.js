@@ -88,7 +88,7 @@ function Table (r, c) {
 
        XX|b ...
        -----
-       a |c    
+       a |c
        .    .
        .      .
        .        .
@@ -114,7 +114,7 @@ function Table (r, c) {
      *
      * The new row becomes the pos-th row in the table. Indexing of the table
      * starts with 0 as the row/column headers and 1 being the first cell.
-     * 
+     *
      * If there are no arguments, the new row becomes the last row of the Table
      *
      * @param pos the position of the new row
@@ -170,7 +170,7 @@ function Table (r, c) {
      * Creates a new column
      *
      * The new column becomes the pos-th column in the table
-     * If there are no arguments, the new column becomes the last 
+     * If there are no arguments, the new column becomes the last
      * in the table.
      *
      * @param pos the position of the new column
@@ -369,8 +369,8 @@ function Table (r, c) {
     /**
      * Deletes the column at position pos
      *
-     * If 
-     *   
+     * If
+     *
      * @param pos the position of the column to delete
      */
     this.deleteCol = function(pos) {
