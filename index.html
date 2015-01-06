@@ -12,6 +12,7 @@
                 padding:0px;
                 height:100%;
                 width:100%;
+                cursor:default;
             }
 
             #all {
@@ -33,24 +34,98 @@
                 height:100%;
                 margin-left: 300px;
                 background: blue;
+                overflow-x:hidden;
+                overflow-y:scroll;
+
+            }
+
+            .category-container {
+                width: 100%;
+                overflow:hidden;
+            }
+
+            .category-head {
+                height: 30px;
+                cursor: pointer;
+            }
+
+            .expanded {
+                background: green;
+            }
+
+            .collapsed{
+                background: cyan;
+            }
+
+            .category-qas {
+                margin-left:20px;
+            }
+
+            .qa-container {
+                background:yellow;
+            }
+
+            textarea {
+                width:100%;
+            }
+
+            .question {
+
+            }
+
+            .answer {
+
             }
 
         </style>
+        <script type="text/javascript">
+            function expandCategory(obj) {
+
+                // the little arrow after the category name
+                var arrow = obj.firstElementChild;
+
+                // all qa-containers
+                var qas = obj.nextElementSibling.style;
+
+                // whether the block is expanded or not
+                var isExpanded = qas.display != "none";
+                if(isExpanded) {
+                    qas.display = "none";
+                    arrow.innerHTML = "&#9671;";
+                    obj.className = obj.className.replace("expanded", "collapsed");
+                } else {
+                    qas.display = "block";
+                    arrow.innerHTML = "&#9672;";
+                    obj.className = obj.className.replace("collapsed","expanded");
+                }
+            }
+        </script>
     </head>
 
     <body><div id="all">
-        <div id="side-bar">
-            Game name <br />
-            Save <br />
-            Save as <br />
-            Duplicate <br />
-            Delete <br />
-            Preview <br />
-            Play <br />
-            Undo <br />
-        </div>
+            <div id="side-bar">
+                Game name <br />
+                Save <br />
+                Save as <br />
+                Duplicate <br />
+                Delete <br />
+                Preview <br />
+                Play <br />
+                Undo <br />
+            </div>
 
-        <div id="main-content">
-        </div>
-    </div></body>
+            <div id="main-content">
+                <div class="category-container">
+                    <div class="category-head expanded" onclick="expandCategory(this);">
+                        Category Test <span>&#9672;</span>
+                    </div>
+                    <div class="category-qas">
+                        <div class="qa-container">
+                            <div class="question">Q<br /><textarea></textarea></div>
+                            <div class="answer">A<br /><textarea></textarea></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div></body>
 </html>
