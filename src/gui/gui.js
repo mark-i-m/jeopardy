@@ -1,3 +1,13 @@
+/*
+ * This file contains code for manipulating the GUI, but
+ * does not directly change the DOM. None of these functions
+ * are called from the HTML itself.
+ */
+
+/**
+ * Generates a new "+ New Category" button, but does not
+ * add it to the DOM
+ */
 function createNewCatButton() {
     var newCatCont = document.createElement("div");
     newCatCont.setAttribute("class", "new-category-container");
@@ -7,6 +17,10 @@ function createNewCatButton() {
     return newCatCont;
 }
 
+/**
+ * Generates a new "+ New Question" button, but does not
+ * add it to the DOM
+ */
 function createNewQaButton() {
     var newQaCont = document.createElement("div");
     newQaCont.setAttribute("class", "new-qa-container");
@@ -16,6 +30,12 @@ function createNewQaButton() {
     return newQaCont;
 }
 
+/**
+ * Generates a new category container, but does not
+ * add it to the DOM. The container is ready to be
+ * rendered. It does not contain any questions. These
+ * can be added by calling main.js:newQa.
+ */
 function createCatContainer(/*id*/) {
     // category-container
     var catCont = document.createElement("div");
@@ -65,6 +85,11 @@ function createCatContainer(/*id*/) {
     return catCont;
 }
 
+/**
+ * Creates a new empty qa-container, but does not
+ * add it to the DOM. It is ready to be rendered
+ * and used by the client.
+ */
 function createQaContainer(/*id*/) {
     //qa-container
     var qaCont = document.createElement("div");

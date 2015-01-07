@@ -1,3 +1,8 @@
+/*
+ * This file contains all code that directly manipulates
+ * the GUI or is called by the GUI.
+ */
+
 /**
  * Create an initial table setup with 1 row and column
  */
@@ -34,6 +39,11 @@ function expandCategory(obj) {
     }
 }
 
+/**
+ * Creates a new category and adds it to the DOM in the appropriate
+ * location. The new category is immediately visible to the user. The
+ * new category is returned to the caller for convenience.
+ */
 function newCategory(ele) {
     // create elements
     var cat = createCatContainer(); // create category
@@ -51,6 +61,10 @@ function newCategory(ele) {
     return cat;
 }
 
+/**
+ * Removes the given category from the DOM and returns it.
+ * After this, the category is no longer visible to the user.
+ */
 function removeCategory(ele) {
     // locate the element and its corresponding button
     var cat = ele.parentElement;
@@ -65,6 +79,11 @@ function removeCategory(ele) {
     return cat;
 }
 
+/**
+ * Creates a new question and adds it to the DOM in the appropriate
+ * location. The new question is immediately visible to the user. The
+ * new question is returned to the caller for convenience.
+ */
 function newQa(ele) {
     // create elements
     var qaCont = createQaContainer();
@@ -79,6 +98,10 @@ function newQa(ele) {
     return qaCont;
 }
 
+/**
+ * Removes the given question from the DOM and returns it.
+ * After this, the question is no longer visible to the user.
+ */
 function removeQa(ele) {
     // locate the element
     var qaCont = ele.parentElement;
