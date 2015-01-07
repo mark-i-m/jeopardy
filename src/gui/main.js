@@ -1,33 +1,10 @@
-/*
- * The current state of the game table
- * Each cell contains a JeopardyCell object, which associates
- * an html element with a cell/row/col id.
- */
-//var table;
-
 /**
  * Create an initial table setup with 1 row and column
  */
 function initGame() {
-    //table = new Table(1,1);
-
-    // initialize the cells
-    //var catId = nextId++;
-    //var rowId = nextId++;
-
-    //table.setCol(1, new JeopardyCell("c" + catId, null));
-    //table.setRow(1, new JeopardyCell("r" + rowId, null));
-    //table.setCell(1, 1, new JeopardyCell("c" + catId + "r" + rowId, null));
-
     // create the first button
     var button1 = createNewCatButton(); // create a "new category" button
     document.getElementById("main-content").appendChild(button1);
-
-    /*var cat = createCategory(table, 1); // create category 1 of table
-    document.getElementById("main-content").appendChild(cat);
-
-    var button2 = createNewCatButton(); // create a "new category" button
-    document.getElementById("main-content").appendChild(button2);*/
 
     // use this button to create the first category
     var cat = newCategory(button1);
