@@ -3,22 +3,34 @@
  * Each cell contains a JeopardyCell object, which associates
  * an html element with a cell/row/col id.
  */
-var table;
+//var table;
 
 /**
  * Create an initial table setup with 1 row and column
  */
 function initGame() {
-    table = new Table(1,1);
+    //table = new Table(1,1);
 
+    // initialize the cells
+    //var catId = nextId++;
+    //var rowId = nextId++;
+
+    //table.setCol(1, new JeopardyCell("c" + catId, null));
+    //table.setRow(1, new JeopardyCell("r" + rowId, null));
+    //table.setCell(1, 1, new JeopardyCell("c" + catId + "r" + rowId, null));
+
+    // create the first button
     var button1 = createNewCatButton(); // create a "new category" button
-    document.getElementById("main-content").addChild(button1);
+    document.getElementById("main-content").appendChild(button1);
 
-    var cat = createCategory(table, 1); // create category 1 of table
-    document.getElementById("main-content").addChild(cat);
+    /*var cat = createCategory(table, 1); // create category 1 of table
+    document.getElementById("main-content").appendChild(cat);
 
     var button2 = createNewCatButton(); // create a "new category" button
-    document.getElementById("main-content").addChild(button2);
+    document.getElementById("main-content").appendChild(button2);*/
+
+    // use this button to create the first category
+    var cat = newCategory(button1);
 }
 
 /**
@@ -27,9 +39,9 @@ function initGame() {
  */
 function expandCategory(obj) {
     // the little arrow after the category name
-    var arrow = obj.firstElementChild;
+    var arrow = obj.childNodes[1].firstElementChild;
 
-    // all qa-containers
+    // category-qas element
     var qas = obj.nextElementSibling.style;
 
     // whether the block is expanded or not
@@ -46,17 +58,60 @@ function expandCategory(obj) {
 }
 
 function newCategory(ele) {
+    // create elements
+    var cat = createCatContainer(); // create category
+    var button2 = createNewCatButton(); // create a "new category" button
 
+    // add them in the right places
+    var mainCont = document.getElementById("main-content");
+    mainCont.insertBefore(button2, ele);
+    mainCont.insertBefore(cat, ele);
+
+    // create a new question for the category
+    newQa(cat.childNodes[1].childNodes[0]);
+
+    // return the category
+    return cat;
 }
 
 function removeCategory(ele) {
+    // locate the element and its corresponding button
+    var cat = ele.parentElement;
+    var button = cat.nextElementSibling;
 
+    // remove the elements
+    var mainCont = cat.parentElement;
+    mainCont.removeChild(cat);
+    mainCont.removeChild(button);
+
+    // return the removed element
+    return cat;
 }
 
 function newQa(ele) {
+    // create elements
+    var qaCont = createQaContainer();
+    var button = createNewQaButton();
 
+    // add them in the right places
+    var catQas = ele.parentElement;
+    catQas.insertBefore(button, ele);
+    catQas.insertBefore(qaCont, ele);
+
+    // return the qa-container
+    return qaCont;
 }
 
 function removeQa(ele) {
+    // locate the element
+    var qaCont = ele.parentElement;
+    var button = qaCont.nextElementSibling;
 
+    // remove from parent
+    var catQas = qaCont.parentElement;
+    catQas.removeChild(qaCont);
+    catQas.removeChild(button);
+
+    // return the removed element
+    return qaCont;
 }

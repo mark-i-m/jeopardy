@@ -3,9 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Jeopardy</title>
-        <script type="text/javascript" src="src/table/table.js"></script>
         <script type="text/javascript" src="src/gui/gui.js"></script>
-        <script type="text/javascript" src="src/gui/jeopardycell.js"></script>
         <script type="text/javascript" src="src/gui/main.js"></script>
         <link rel="stylesheet" type="text/css" href="src/gui/main.css">
     </head>
@@ -23,13 +21,13 @@
             </div>
 
             <div id="main-content">
-                <div class="new-category-container" onclick="newCategory(this);">
+                <!--<div class="new-category-container" onclick="newCategory(this);">
                     + New Category
                 </div>
                 <div class="category-container">
-                    <div class="category-head expanded" onclick="expandCategory(this);">
-                        Category Test <span>&#9672;</span>
-                        <span class="remove-category-container" onclick="removeCategory(this);">-</span>
+                    <div class="category-head expanded">
+                        <div class="category-label" onclick="expandCategory(this.parentElement);">Category Test <span>&#9672;</span></div>
+                        <div class="remove-category-container" onclick="removeCategory(this);">-</div>
                     </div>
                     <div class="category-qas">
                         <div class="new-qa-container" onclick="newQa(this);">
@@ -48,6 +46,6 @@
                 <div class="new-category-container" onclick="newCategory(this);">
                     + New Category
                 </div>
-            </div>
+                </div>-->
         </div></body>
 </html>
