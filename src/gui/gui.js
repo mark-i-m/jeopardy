@@ -136,6 +136,10 @@ function toggleEditorGame() {
 function createGameTable() {
     // create the table
     var table = document.createElement("table");
+
+    // debugging
+    // document.getElementById("game-table").appendChild(table);
+
     var headerRow = document.createElement("tr");
     table.appendChild(headerRow);
 
@@ -150,7 +154,8 @@ function createGameTable() {
         cols++;
 
         // add the header
-        headerRow.appendChild(document.createElement("th"));
+        var header = createGameHeader(catContainers[category]);
+        headerRow.appendChild(header);
 
         // get all questions
         var qaContainers = catContainers[category]
@@ -167,13 +172,40 @@ function createGameTable() {
                 rows++;
 
                 table.appendChild(document.createElement("tr"));
+
+                // fill in the "bald spots"
+                for (var i = 0; i < cols-1; i++){
+                    table.childNodes[currentRows].appendChild(document.createElement("td"));
+                }
             }
 
+            // create a new cell
+            var cell = createGameCell(qaContainers[qa]);
+
             // add this question to the row
-            table.childNodes[currentRows].appendChild(document.createElement("td"));
+            table.childNodes[currentRows].appendChild(cell);
+        }
+
+        // fill in more "bald spots"
+        for (var i = qaContainers.length + 1; i <= rows; i++) {
+            table.childNodes[i].appendChild(document.createElement("td"));
         }
     }
 
     // return the table
     return table;
+}
+
+function createGameHeader(ele) {
+    var head = document.createElement("th");
+    head.innerHTML = "Hi";
+
+    return head;
+}
+
+function createGameCell(ele) {
+    var cell = document.createElement("td");
+    cell.innerHTML = "Hello";
+
+    return cell;
 }
