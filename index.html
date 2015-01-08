@@ -15,7 +15,7 @@
     <body onload="initGame();">
         <div id="editor" style="display:block">
             <div id="side-bar">
-                <span id="game-name"></span>
+                <input id="game-name" type="text" />
 
                 <div id="play" onclick="play();">Play</div>
                 <div id="save" onclick="save();">Save</div>
@@ -34,7 +34,7 @@
                 </div>
                 <div class="category-container">
                     <div class="category-head expanded">
-                        <div class="category-label" onclick="expandCategory(this.parentElement);">Category Test <span>&#9672;</span></div>
+                    <div class="category-label" onclick="expandCategory(this.parentElement);"><span>&#9672;</span> <input type="text" /></div>
                         <div class="remove-category-container" onclick="removeCategory(this);">-</div>
                     </div>
                     <div class="category-qas">

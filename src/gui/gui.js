@@ -35,26 +35,34 @@ function createNewQaButton() {
  * rendered. It does not contain any questions. These
  * can be added by calling main.js:newQa.
  */
-function createCatContainer(/*id*/) {
+function createCatContainer() {
     // category-container
     var catCont = document.createElement("div");
     catCont.setAttribute("class", "category-container");
-    //catCont.setAttribute("id", id);
 
     // category-head expanded
     var catHead = document.createElement("div");
     catHead.setAttribute("class", "category-head expanded");
 
+    var diamond = document.createElement("div");
+    diamond.setAttribute("class", "category-head-diamond");
+    diamond.setAttribute("onclick", "expandCategory(this.parentElement);");
+    diamond.innerHTML = "&#9672";
+
+    catHead.appendChild(diamond);
+
+    // input
+    var input = document.createElement("input");
+    input.setAttribute("type", "text");
+    input.value = "New Category";
+
+    catHead.appendChild(input);
+
     // label
     var label = document.createElement("div");
     label.setAttribute("class", "category-label");
     label.setAttribute("onclick", "expandCategory(this.parentElement);");
-    label.innerHTML = "New Category ";
 
-    var diamond = document.createElement("span");
-    diamond.innerHTML = "&#9672";
-
-    label.appendChild(diamond);
     // add it after the rmCat element, so they render correctly
     // by putting it after the rmCat, css makes it take up the
     // remaining space in the catHead...

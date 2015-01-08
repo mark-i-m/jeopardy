@@ -25,8 +25,8 @@ function initGame() {
  * @param obj the html obj of the category-head element
  */
 function expandCategory(obj) {
-    // the little arrow after the category name
-    var arrow = obj.childNodes[1].firstElementChild;
+    // the little arrow before the category name
+    var arrow = obj.getElementsByClassName("category-head-diamond")[0];
 
     // category-qas element
     var qas = obj.nextElementSibling.style;
@@ -127,7 +127,7 @@ function removeQa(ele) {
  */
 function setGameName(name) {
     gameName = name;
-    document.getElementById("game-name").innerHTML = gameName;
+    document.getElementById("game-name").value = gameName;
 }
 
 function play() {
