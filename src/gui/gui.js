@@ -1,7 +1,6 @@
 /*
- * This file contains code for manipulating the GUI, but
- * does not directly change the DOM. None of these functions
- * are called from the HTML itself.
+ * This file only contains functions NOT directly called
+ * by the GUI.
  */
 
 /**
@@ -119,4 +118,62 @@ function createQaContainer(/*id*/) {
     qaCont.appendChild(a);
 
     return qaCont;
+}
+
+function toggleEditorGame() {
+    var editor = document.getElementById("editor");
+    var game = document.getElementById("game-screen");
+
+    if (game.style.display == "none") {
+        editor.style.display = "none";
+        game.style.display   = "block";
+    } else {
+        editor.style.display = "block";
+        game.style.display   = "none";
+    }
+}
+
+function createGameTable() {
+    // create the table
+    var table = document.createElement("table");
+    var headerRow = document.createElement("tr");
+    table.appendChild(headerRow);
+
+    // get all categories
+    var catContainers = document.getElementById("main-content")
+                                .getElementsByClassName("category-container");
+
+    // some bookkeeping variables: the dimensions of the table
+    var rows = 0, cols = 0;
+
+    for (var category = 0; category < catContainers.length; category++) {
+        cols++;
+
+        // add the header
+        headerRow.appendChild(document.createElement("th"));
+
+        // get all questions
+        var qaContainers = catContainers[category]
+            .getElementsByClassName("category-qas")[0]
+            .getElementsByClassName("qa-container");
+
+        var currentRows = 0; // how many rows encountered in the current category
+
+        for (var qa = 0; qa < qaContainers.length; qa++) {
+            currentRows++;
+
+            // if there are not enought rows, add more
+            if (currentRows > rows) {
+                rows++;
+
+                table.appendChild(document.createElement("tr"));
+            }
+
+            // add this question to the row
+            table.childNodes[currentRows].appendChild(document.createElement("td"));
+        }
+    }
+
+    // return the table
+    return table;
 }

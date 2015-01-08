@@ -132,6 +132,27 @@ function setGameName(name) {
 
 function play() {
     console.log("play");
+
+    // toggle game mode
+    toggleEditorGame();
+
+    // create a game table
+    var table = createGameTable();
+
+    // replace with the new table
+    var screen = document.getElementById("game-table");
+    screen.appendChild(table);
+}
+
+function gameExit() {
+    console.log("edit");
+
+    // toggle editor mode
+    toggleEditorGame();
+
+    // remove the table
+    var screen = document.getElementById("game-table");
+    screen.removeChild(screen.firstElementChild);
 }
 
 function save() {
