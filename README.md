@@ -8,4 +8,4 @@ The web app allows (will allow) users to
 - save and load multiple games
 - play with score-keeping
 
-* So far this code has only been tested on Firefox *
+** So far this code has only been tested on Firefox **
