@@ -10,6 +10,8 @@ html, body {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    font-family: sans-serif;
+    font-size: 12pt
 }
 
 #editor, #game-screen {
@@ -128,6 +130,11 @@ html, body {
     display:block;
     float:left;
     border-radius:3px;
+}
+
+input {
+    font-family: sans-serif;
+    font-size: 12pt;
 }
 
 input:hover {
