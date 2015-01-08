@@ -2,22 +2,25 @@
 <html>
     <head>
         <meta charset="UTF-8">
+
         <title>Jeopardy</title>
+
         <script type="text/javascript" src="src/gui/gui.js"></script>
         <script type="text/javascript" src="src/gui/main.js"></script>
+
         <link rel="stylesheet" type="text/css" href="src/gui/main.css">
     </head>
 
     <body onload="initGame();"><div id="all">
             <div id="side-bar">
-                Game name <br />
-                Save <br />
-                Save as <br />
-                Duplicate <br />
-                Delete <br />
-                Preview <br />
-                Play <br />
-                Undo <br />
+                <span id="game-name"></span>
+
+                <div id="play" onclick="play();">Play</div>
+                <div id="save" onclick="save();">Save</div>
+                <div id="save-as" onclick="saveas();">Save as...</div>
+                <div id="load" onclick="load();">Load</div>
+                <div id="delete" onclick="delet();">Delete</div>
+                <div id="undo" onclick="undo();">Undo</div>
             </div>
 
             <div id="main-content">

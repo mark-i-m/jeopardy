@@ -3,6 +3,8 @@
  * the GUI or is called by the GUI.
  */
 
+var gameName = "";
+
 /**
  * Create an initial table setup with 1 row and column
  */
@@ -13,6 +15,9 @@ function initGame() {
 
     // use this button to create the first category
     var cat = newCategory(button1);
+
+    // set the new game name
+    setGameName("New Game");
 }
 
 /**
@@ -114,4 +119,37 @@ function removeQa(ele) {
 
     // return the removed element
     return qaCont;
+}
+
+/**
+ * Convenience function to set the game name and update that
+ * part of the gui
+ */
+function setGameName(name) {
+    gameName = name;
+    document.getElementById("game-name").innerHTML = gameName;
+}
+
+function play() {
+    console.log("play");
+}
+
+function save() {
+    console.log("save");
+}
+
+function saveas() {
+    console.log("saveas");
+}
+
+function load() {
+    console.log("load");
+}
+
+function delet() {
+    console.log("delete");
+}
+
+function undo() {
+    console.log("undo");
 }
