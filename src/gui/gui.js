@@ -54,6 +54,7 @@ function createCatContainer() {
     // input
     var input = document.createElement("input");
     input.setAttribute("type", "text");
+    input.setAttribute("placeholder", "Category Name");
     input.value = "New Category";
 
     catHead.appendChild(input);
@@ -97,7 +98,7 @@ function createCatContainer() {
  * add it to the DOM. It is ready to be rendered
  * and used by the client.
  */
-function createQaContainer(/*id*/) {
+function createQaContainer(amt) {
     //qa-container
     var qaCont = document.createElement("div");
     qaCont.setAttribute("class", "qa-container");
@@ -111,16 +112,29 @@ function createQaContainer(/*id*/) {
 
     qaCont.appendChild(rmQa);
 
+    // value
+    var value = document.createElement("div");
+    value.innerHTML = "$";
+
+    var input = document.createElement("input");
+    input.setAttribute("type", "number");
+    input.setAttribute("placeholder", "---");
+    input.value = amt;
+
+    value.appendChild(input);
+
+    qaCont.appendChild(value);
+
     // question
     var q = document.createElement("div");
-    q.innerHTML = "Q<br />";
+    q.innerHTML = "Q";
     q.appendChild(document.createElement("textarea"));
 
     qaCont.appendChild(q);
 
     // answer
     var a = document.createElement("div");
-    a.innerHTML = "A<br />";
+    a.innerHTML = "A";
     a.appendChild(document.createElement("textarea"));
 
     qaCont.appendChild(a);
@@ -144,9 +158,6 @@ function toggleEditorGame() {
 function createGameTable() {
     // create the table
     var table = document.createElement("table");
-
-    // debugging
-    // document.getElementById("game-table").appendChild(table);
 
     var headerRow = document.createElement("tr");
     table.appendChild(headerRow);
@@ -206,14 +217,26 @@ function createGameTable() {
 
 function createGameHeader(ele) {
     var head = document.createElement("th");
-    head.innerHTML = "Hi";
+    head.innerHTML = ele.getElementsByClassName("category-head")[0]
+                        .getElementsByTagName("input")[0]
+                        .value;
+
+    if (head.innerHTML == "") {
+        head.innerHTML = "---";
+    }
 
     return head;
 }
 
 function createGameCell(ele) {
     var cell = document.createElement("td");
-    cell.innerHTML = "Hello";
+    cell.innerHTML = ele.getElementsByTagName("input")[0].value;
+
+    if (cell.innerHTML == "") {
+        cell.innerHTML = "---";
+    } else {
+        cell.innerHTML = "$" + cell.innerHTML;
+    }
 
     return cell;
 }

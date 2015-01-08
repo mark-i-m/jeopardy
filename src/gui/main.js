@@ -91,7 +91,7 @@ function removeCategory(ele) {
  */
 function newQa(ele) {
     // create elements
-    var qaCont = createQaContainer();
+    var qaCont = createQaContainer(0);
     var button = createNewQaButton();
 
     // add them in the right places
