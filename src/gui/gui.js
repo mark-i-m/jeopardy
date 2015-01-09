@@ -249,7 +249,7 @@ function createGameCell(ele) {
 
     cell.setAttribute("onclick", "setQa(" + value + ",\""
             + escape(question) + "\",\""
-            + escape(answer) + "\"); showQa();");
+            + escape(answer) + "\"); showQa(); markQa(this);");
 
     cell.innerHTML = "$" + value;
 

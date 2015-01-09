@@ -184,6 +184,10 @@ function closeQa() {
         .style.display = "inline-block";
 }
 
+function markQa(ele) {
+    ele.className = ele.className ? " marked-q" : "marked-q";
+}
+
 function showAnswer() {
     document.getElementById("game-a")
         .style.display = "block";

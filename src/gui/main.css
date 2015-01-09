@@ -25,10 +25,6 @@ html, body {
     overflow: hidden;
 }
 
-#game-screen {
-    overflow: scroll;
-}
-
 #side-bar {
     width:150px;
     height: 100%;
@@ -65,7 +61,7 @@ html, body {
     margin-left: 150px;
     background: blue;
     overflow-x:hidden;
-    overflow-y:scroll;
+    overflow-y:auto;
 
 }
 
@@ -183,14 +179,6 @@ textarea {
     background:#FFED8B;
 }
 
-.question {
-
-}
-
-.answer {
-
-}
-
 #game-screen-close {
     width: 20px;
     height: 20px;
@@ -205,17 +193,25 @@ textarea {
     cursor:pointer;
 }
 
-#game-table > table {
+#game-table {
     width:100%;
     height:100%;
-    position:absolute;
+    background:orange;
+    overflow:auto;
+}
+
+#game-table > table {
+    height:100%;
+    margin: 0px auto;
+    position:relative;
     right:0px;
     top:0px;
-    background:orange;
+    background:inherit;
     table-layout: fixed;
 }
 
-#game-table tr:first-child th {
+#game-table th {
+    min-width:200px;
     height: 50px;
     border-bottom: solid black 1px;
     -webkit-touch-callout: none;
@@ -227,6 +223,7 @@ textarea {
 }
 
 #game-table td {
+    min-width:200px;
     text-align: center;
     border-bottom: solid black 1px;
     -webkit-touch-callout: none;
@@ -235,14 +232,25 @@ textarea {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    font-size: 24pt;
+    display:table-cell;
+}
+
+#game-table td:hover {
+    color: blue;
+}
+
+#game-table .marked-q {
+    color: purple;
 }
 
 #game-question-screen {
     width:95%;
     height:95%;
-    margin: 1.5%;
     padding: 0.5%;
-    position:absolute;
+    top: 2%;
+    left: 2%;
+    position:fixed;
     background:white;
     border-radius:10px;
 }
