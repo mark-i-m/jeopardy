@@ -216,3 +216,27 @@ function parseXML(tokens) {
 
     return {tree: ast, numTok: (i+1)};
 }
+
+// debugging
+function printAST(ast) {
+    var ret = "";
+
+    ret += ast.name;
+
+    for (var i = 0; i < ast.attr.length; i++) {
+        ret += " " + ast.attr[i].attr + "=\""
+                   + ast.attr[i].value + "\"";
+    }
+
+    ret += "\n";
+
+    for (var i = 0; i < ast.children.length; i++) {
+        ret += "\t" + printAST(ast.children[i]).replace("\n","\n\t");
+    }
+
+    if(ast.children.length > 0) {
+        ret += "\n";
+    }
+
+    return ret;
+}
