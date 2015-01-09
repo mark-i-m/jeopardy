@@ -230,13 +230,28 @@ function createGameHeader(ele) {
 
 function createGameCell(ele) {
     var cell = document.createElement("td");
-    cell.innerHTML = ele.getElementsByTagName("input")[0].value;
 
-    if (cell.innerHTML == "") {
-        cell.innerHTML = "---";
-    } else {
-        cell.innerHTML = "$" + cell.innerHTML;
+    var value = ele.getElementsByTagName("input")[0].value;
+    var question = ele.getElementsByTagName("textarea")[0].value;
+    var answer = ele.getElementsByTagName("textarea")[1].value;
+
+    if (value == "") {
+        value = "---";
     }
+
+    if (question == "") {
+        question = "No question?";
+    }
+
+    if (answer == "") {
+        answer = "No answer!";
+    }
+
+    cell.setAttribute("onclick", "setQa(" + value + ",\""
+            + escape(question) + "\",\""
+            + escape(answer) + "\"); showQa();");
+
+    cell.innerHTML = "$" + value;
 
     return cell;
 }

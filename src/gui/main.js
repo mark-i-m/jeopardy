@@ -155,6 +155,42 @@ function gameExit() {
     screen.removeChild(screen.firstElementChild);
 }
 
+// q and a should be escaped strings
+function setQa(value, question, answer) {
+    question = unescape(question);
+    answer = unescape(answer);
+
+    document.getElementById("game-q-label").innerHTML =
+        "$" + value;
+
+    document.getElementById("game-q").innerHTML =
+        question;
+
+    document.getElementById("game-a").innerHTML =
+        answer;
+}
+
+function showQa() {
+    document.getElementById("game-question-screen")
+        .style.display = "block";
+}
+
+function closeQa() {
+    document.getElementById("game-question-screen")
+        .style.display = "none";
+    document.getElementById("game-a")
+        .style.display = "none";
+    document.getElementById("game-q-answer")
+        .style.display = "inline-block";
+}
+
+function showAnswer() {
+    document.getElementById("game-a")
+        .style.display = "block";
+    document.getElementById("game-q-answer")
+        .style.display = "none";
+}
+
 function save() {
     console.log("save");
 }

@@ -180,7 +180,7 @@ textarea {
     -moz-user-select: text;
     -ms-user-select: text;
     user-select: text;
-    background:purple;
+    background:#FFED8B;
 }
 
 .question {
@@ -212,6 +212,7 @@ textarea {
     right:0px;
     top:0px;
     background:orange;
+    table-layout: fixed;
 }
 
 #game-table tr:first-child th {
@@ -234,4 +235,58 @@ textarea {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+#game-question-screen {
+    width:95%;
+    height:95%;
+    margin: 1.5%;
+    padding: 0.5%;
+    position:absolute;
+    background:white;
+    border-radius:10px;
+}
+
+#game-question-screen > div {
+    width: 100%;
+}
+
+#game-q-label {
+    text-align: center;
+    border-bottom: solid 1px black;
+    font-size: 24pt;
+}
+
+#game-q, #game-a {
+    margin: 30px 0px;
+}
+
+#game-question-buttons {
+    text-align: center;
+}
+
+.game-q-button {
+    width: 75px;
+    height: 20px;
+    padding: 15px 0px;
+    margin: 0px 10px;
+    display: inline-block;
+    border-radius: 5px;
+}
+
+#game-q-close {
+    background:red;
+    color: white;
+}
+
+#game-q-close:hover {
+    background:pink;
+}
+
+#game-q-answer {
+    background:green;
+}
+
+#game-q-answer:hover {
+    background:lightgreen;
 }
