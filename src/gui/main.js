@@ -130,6 +130,11 @@ function setGameName(name) {
     document.getElementById("game-name").value = gameName;
 }
 
+/**
+ * Switches to game mode. This function generates a game table
+ * element, adds it to the DOM, and makes it visible to the
+ * user.
+ */
 function play() {
     console.log("play");
 
@@ -144,6 +149,10 @@ function play() {
     screen.appendChild(table);
 }
 
+/**
+ * Switch to editor mode. This function removes the game table
+ * from the DOM. And makes the editor visible again.
+ */
 function gameExit() {
     console.log("edit");
 
@@ -153,9 +162,18 @@ function gameExit() {
     // remove the table
     var screen = document.getElementById("game-table");
     screen.removeChild(screen.firstElementChild);
+
+    // close question string, just in case
+    closeQa();
 }
 
-// q and a should be escaped strings
+/**
+ * Sets the question, answer, and value strings of the
+ * question screen in game mode.
+ *
+ * The question and answer strings should be escaped,
+ * since this allows more freedom to the user.
+ */
 function setQa(value, question, answer) {
     question = unescape(question);
     answer = unescape(answer);
@@ -170,11 +188,17 @@ function setQa(value, question, answer) {
         answer;
 }
 
+/**
+ * Show the question screen of in game mode
+ */
 function showQa() {
     document.getElementById("game-question-screen")
         .style.display = "block";
 }
 
+/**
+ * Hide and reset the question screen in game mode
+ */
 function closeQa() {
     document.getElementById("game-question-screen")
         .style.display = "none";
@@ -184,10 +208,18 @@ function closeQa() {
         .style.display = "inline-block";
 }
 
+/**
+ * Mark the selected question as marked on the 
+ * game table in game mode
+ */
 function markQa(ele) {
     ele.className = ele.className ? " marked-q" : "marked-q";
 }
 
+/**
+ * Show the answer of the question on the question
+ * screen in game mode
+ */
 function showAnswer() {
     document.getElementById("game-a")
         .style.display = "block";

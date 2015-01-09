@@ -1,6 +1,6 @@
 /*
  * This file only contains functions NOT directly called
- * by the GUI.
+ * by the GUI, but that do affect the GUI.
  */
 
 /**
@@ -142,6 +142,9 @@ function createQaContainer(amt) {
     return qaCont;
 }
 
+/**
+ * Toggle between editor mode and game mode.
+ */
 function toggleEditorGame() {
     var editor = document.getElementById("editor");
     var game = document.getElementById("game-screen");
@@ -155,6 +158,10 @@ function toggleEditorGame() {
     }
 }
 
+/**
+ * Generates the game table from the currently
+ * loaded game, but does not add it to the DOM.
+ */
 function createGameTable() {
     // create the table
     var table = document.createElement("table");
@@ -215,6 +222,10 @@ function createGameTable() {
     return table;
 }
 
+/**
+ * Generates the <th> element of the game mode table.
+ * This is a helper method for the createGameTable method.
+ */
 function createGameHeader(ele) {
     var head = document.createElement("th");
     head.innerHTML = ele.getElementsByClassName("category-head")[0]
@@ -228,6 +239,12 @@ function createGameHeader(ele) {
     return head;
 }
 
+/**
+ * Generates the <td> element of the game mode table.
+ * This is a helper method for the createGameTable method.
+ * These elements call the right methods onclick to show
+ * the question.
+ */
 function createGameCell(ele) {
     var cell = document.createElement("td");
 
