@@ -209,7 +209,7 @@ function closeQa() {
 }
 
 /**
- * Mark the selected question as marked on the 
+ * Mark the selected question as marked on the
  * game table in game mode
  */
 function markQa(ele) {

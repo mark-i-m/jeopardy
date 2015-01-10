@@ -32,6 +32,10 @@ function generateGameXML() {
     return xml;
 }
 
+/**
+ * Helper function that generates XML representing
+ * the given element's category
+ */
 function generateCategoryXML(catCont) {
     var xml = "";
 
@@ -58,6 +62,10 @@ function generateCategoryXML(catCont) {
     return xml;
 }
 
+/**
+ * Helper function that generates XML representing
+ * the given element's question, answer, and value
+ */
 function generateQaXML(qaCont) {
     var xml = "";
 
@@ -75,8 +83,15 @@ function generateQaXML(qaCont) {
     return xml;
 }
 
-// assumes there is no "loose" text in the xml
-// all text is in the attributes and escaped.
+/**
+ * A simple lexer for my "brand" of simple XML.
+ *
+ * It takes a string of XML and produces a list
+ * of tokens representing the tags.
+ *
+ * Assumes there is no "loose" text in the xml
+ * all text is in the attributes and escaped.
+ */
 function lexXML(xml) {
     var tokens = [];
 
@@ -95,6 +110,11 @@ function lexXML(xml) {
     return tokens;
 }
 
+/**
+ * A helper function for the lexer that takes a
+ * string representing a tag and produces a js object
+ * representing the token.
+ */
 function analyzeToken(tok) {
     var firstTwo = tok.substring(0,2);
     var lastTwo = tok.substring(tok.length - 2, tok.length);
@@ -114,6 +134,10 @@ function analyzeToken(tok) {
     return {name: n, attr: a, type: t};
 }
 
+/**
+ * A helper function that takes a string representing
+ * an xml tag and returns the tag name
+ */
 function getTagName(tok) {
     var name = "";
 
@@ -138,6 +162,11 @@ function getTagName(tok) {
     return name;
 }
 
+/**
+ * A helper function that takes a string representing
+ * an xml tag and returns a list of attributes in the
+ * form [{attr: "", value: ""}]
+ */
 function getTagAttributes(tok) {
     var attrs = [];
 
@@ -173,6 +202,23 @@ function getTagAttributes(tok) {
 }
 
 // returns {ast, # tokens consumed}
+/**
+ * A simple parser for my simple xml. It takes a list of
+ * tokens produced by the lexer and generates a simple
+ * AST from it.
+ *
+ * The return is of the form
+ * {tree, numTok}
+ * where tree is the AST and numTok is the
+ * number of tokens in the given list that were consumed
+ * in creating the tree.
+ *
+ * Each tree is of the form
+ * {name: "", attr: [], children: [tree]}
+ * the attr list is exactly the same as those produced
+ * by the lexer. Each child in the list is of the same
+ * recurrsive form as the parent.
+ */
 function parseXML(tokens) {
     var ast = {name: "", attr: [], children: []};
 
@@ -218,6 +264,7 @@ function parseXML(tokens) {
 }
 
 // debugging
+// returns a string representation of the AST
 function printAST(ast) {
     var ret = "";
 
