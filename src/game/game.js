@@ -73,3 +73,13 @@ function restoreQa(ast) {
     // return the container
     return newQaCont;
 }
+
+function saveToWebStorage(xml) {
+    // Check browser support for web storage
+    if (typeof(Storage) != "undefined") {
+        // Store
+        localStorage.setItem("games", xml);
+    } else {
+        alert("Sorry, your browser does not support Web Storage...");
+    }
+}

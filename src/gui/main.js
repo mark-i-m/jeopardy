@@ -229,6 +229,9 @@ function showAnswer() {
 
 function save() {
     console.log("save");
+
+    // produce xml and put it in web storage
+    saveToWebStorage(generateGameXML());
 }
 
 function saveas() {
@@ -237,6 +240,12 @@ function saveas() {
 
 function load() {
     console.log("load");
+
+    // retrieve the xml
+    var xml = localStorage.getItem("games");
+
+    // restore the game
+    restoreGame(parseXML(lexXML(xml)).tree);
 }
 
 function delet() {
