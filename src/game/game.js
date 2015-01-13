@@ -10,6 +10,10 @@ function restoreGame(ast) {
     // new main-content div
     var newMainCont = document.createElement("div");
     newMainCont.setAttribute("id", "main-content");
+    // Replace main-content
+    document.getElementById("editor").replaceChild(
+            newMainCont,
+            document.getElementById("main-content"));
 
     // restore the game name
     setGameName(unescape(ast.attr[0].value));
@@ -23,10 +27,6 @@ function restoreGame(ast) {
         newMainCont.appendChild(createNewCatButton());
     }
 
-    // Replace main-content
-    document.getElementById("editor").replaceChild(
-            newMainCont,
-            document.getElementById("main-content"));
 }
 
 /**
@@ -39,7 +39,8 @@ function restoreCategory(ast) {
 
     // new category-container div
     var newCatCont = createCatContainer();
-    newCatCont.getElementsByTagName("input")[0].input = name;
+    console.log();
+    newCatCont.getElementsByTagName("input")[0].value = unescape(name);
 
     // add all questions
     var catQas = newCatCont.getElementsByClassName("category-qas")[0];
@@ -58,16 +59,16 @@ function restoreCategory(ast) {
  */
 function restoreQa(ast) {
     // value, question, and answer
-    var value = ast.attr[0].value;
     var question = ast.attr[0].value;
-    var answer = ast.attr[0].value;
+    var answer = ast.attr[1].value;
+    var value = ast.attr[2].value;
 
     // new qa-container div
     var newQaCont = createQaContainer();
 
-    newQaCont.getElementsByClassName("input")[0].value = value;
-    newQaCont.getElementsByTagName("textarea")[0].value = question;
-    newQaCont.getElementsByTagName("textarea")[1].value = answer;
+    newQaCont.getElementsByTagName("input")[0].value = unescape(value);
+    newQaCont.getElementsByTagName("textarea")[0].value = unescape(question);
+    newQaCont.getElementsByTagName("textarea")[1].value = unescape(answer);
 
     // return the container
     return newQaCont;
