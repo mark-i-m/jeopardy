@@ -1,5 +1,6 @@
 /*
- * This file contains code for saving, restoring, and undoing games
+ * This file contains code for generating and parsing xml
+ * for games
  */
 
 /**
