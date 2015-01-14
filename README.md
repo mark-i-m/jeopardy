@@ -8,4 +8,6 @@ The web app allows (will allow) users to
 - save and load multiple games
 - play with score-keeping (coming eventually)
 
-** So far this code has only been tested on Firefox **
+This code has been tested on
+- Firefox 35 on Arch Linux (kernel 3.17.6)
+- Safari 8.0.2 on Mac OS Yosemite
