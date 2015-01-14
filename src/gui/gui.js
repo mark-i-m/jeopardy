@@ -55,6 +55,7 @@ function createCatContainer() {
     var input = document.createElement("input");
     input.setAttribute("type", "text");
     input.setAttribute("placeholder", "Category Name");
+    input.setAttribute("onblur", "snapshot();");
     input.value = "New Category";
 
     catHead.appendChild(input);
@@ -119,6 +120,7 @@ function createQaContainer(amt) {
     var input = document.createElement("input");
     input.setAttribute("type", "number");
     input.setAttribute("placeholder", "---");
+    input.setAttribute("onblur", "snapshot();");
     input.value = amt;
 
     value.appendChild(input);
@@ -128,14 +130,22 @@ function createQaContainer(amt) {
     // question
     var q = document.createElement("div");
     q.innerHTML = "Q";
-    q.appendChild(document.createElement("textarea"));
+
+    var qText = document.createElement("textarea");
+    qText.setAttribute("onblur", "snapshot();");
+
+    q.appendChild(qText);
 
     qaCont.appendChild(q);
 
     // answer
     var a = document.createElement("div");
     a.innerHTML = "A";
-    a.appendChild(document.createElement("textarea"));
+
+    var aText = document.createElement("textarea");
+    aText.setAttribute("onblur", "snapshot();");
+
+    a.appendChild(aText);
 
     qaCont.appendChild(a);
 
