@@ -257,15 +257,7 @@ function save() {
         gameObj.name = gameName;
     }
 
-    // write the xml to webstorage
-    var xml = "";
-
-    for (var i = 0; i < gamesList.length; i++) {
-        xml += astToXML(gamesList[i].game);
-    }
-
-    saveToWebStorage(xml);
-    populateGameList(gamesList);
+    updateGamesList();
 }
 
 function saveas() {
@@ -280,6 +272,16 @@ function saveas() {
 
 function delet() {
     console.log("delete");
+
+    // find the object
+    var gameObj = findGame(gameId);
+    var index = gamesList.indexOf(gameObj);
+
+    // remove it
+    gamesList.splice(index, 1);
+
+    // update the gui
+    updateGamesList();
 }
 
 function undo() {

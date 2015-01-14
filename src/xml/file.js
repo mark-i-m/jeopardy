@@ -339,6 +339,16 @@ function astToXML(ast) {
     return ret;
 }
 
+function generateAllGameXML() {
+    var xml = "";
+
+    for (var i = 0; i < gamesList.length; i++) {
+        xml += astToXML(gamesList[i].game);
+    }
+
+    return xml;
+}
+
 // debugging
 // returns a string representation of the AST
 function printAST(ast) {

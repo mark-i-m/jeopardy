@@ -309,3 +309,11 @@ function loadGame(id) {
     // restore the game
     restoreGame(game.game);
 }
+
+function updateGamesList() {
+    // write the xml to webstorage
+    var xml = generateAllGameXML();
+
+    saveToWebStorage(xml);
+    populateGameList(gamesList);
+}
