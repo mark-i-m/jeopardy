@@ -287,7 +287,7 @@ function newGame() {
     populateGameList(gamesList);
 
     // clear history and take a first snapshot
-    historyClear(;
+    historyClear();
     snapshot();
 }
 
