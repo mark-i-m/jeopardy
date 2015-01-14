@@ -121,6 +121,12 @@ function saveToWebStorage(xml) {
  * {games: [{name: "name", id: #, game: <ast>}], nextId: #}
  */
 function findAllGames() {
+    // check if there are any saved games
+    var storage = localStorage.getItem("games");
+    if (!storage) {
+        return {games: [], nextId: 0};
+    }
+
     var allGames = [];
     var nid = -1;
 
