@@ -10,7 +10,7 @@
 function createNewCatButton() {
     var newCatCont = document.createElement("div");
     newCatCont.setAttribute("class", "new-category-container");
-    newCatCont.setAttribute("onclick", "newCategory(this);");
+    newCatCont.setAttribute("onclick", "newCategory(this); snapshot();");
     newCatCont.innerHTML = "+ New Category";
 
     return newCatCont;
@@ -23,7 +23,7 @@ function createNewCatButton() {
 function createNewQaButton() {
     var newQaCont = document.createElement("div");
     newQaCont.setAttribute("class", "new-qa-container");
-    newQaCont.setAttribute("onclick", "newQa(this);");
+    newQaCont.setAttribute("onclick", "newQa(this); snapshot();");
     newQaCont.innerHTML = "+ New Question";
 
     return newQaCont;
@@ -72,7 +72,7 @@ function createCatContainer() {
     // rm category button
     var rmCat = document.createElement("div");
     rmCat.setAttribute("class", "remove-category-container");
-    rmCat.setAttribute("onclick", "removeCategory(this.parentElement);");
+    rmCat.setAttribute("onclick", "removeCategory(this.parentElement); snapshot();");
     rmCat.innerHTML = "-";
 
     catHead.appendChild(rmCat);
@@ -108,7 +108,7 @@ function createQaContainer(amt) {
     //remove-qa-container
     var rmQa = document.createElement("span");
     rmQa.setAttribute("class", "remove-qa-container");
-    rmQa.setAttribute("onclick", "removeQa(this);");
+    rmQa.setAttribute("onclick", "removeQa(this); snapshot();");
     rmQa.innerHTML = "-";
 
     qaCont.appendChild(rmQa);
@@ -339,6 +339,9 @@ function loadGame(id) {
     // restore the game
     restoreGame(game.game);
 
+    // clear the history and take the initial snapshot
+    gameHistory = [];
+    snapshot();
 }
 
 function updateGamesList() {
