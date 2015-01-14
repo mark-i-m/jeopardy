@@ -9,6 +9,7 @@ The web app allows (will allow) users to
 - play with score-keeping (coming eventually)
 
 This code has been tested on
-- Firefox 35 on Arch Linux (kernel 3.17.6)
+- Firefox 28, 29, 35 on Windows 7
 - Chrome 39 on Windows 7
 - Safari 8.0.2 on Mac OS Yosemite
+- Firefox 35 on Arch Linux (kernel 3.17.6)
