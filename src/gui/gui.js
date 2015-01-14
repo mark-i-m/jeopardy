@@ -272,3 +272,40 @@ function createGameCell(ele) {
 
     return cell;
 }
+
+/**
+ * Populates the games list element of the GUI with
+ * games.
+ */
+function populateGameList(games) {
+    // create a new game-list
+    var list = document.createElement("span");
+    list.setAttribute("id", "game-list");
+    list.setAttribute("style", "display:block;");
+
+    document.getElementById("side-bar").replaceChild(list,
+            document.getElementById("game-list"));
+
+    // add games
+    for (var i = 0; i < games.length; i++) {
+        var name = games[i].name;
+        var id = parseInt(games[i].id);
+
+        var option = document.createElement("div");
+        option.setAttribute("onclick", "loadGame(" + id + ");");
+        option.innerHTML = unescape(name);
+
+        list.appendChild(option);
+    }
+}
+
+/**
+ * Restores the game with the given id
+ */
+function loadGame(id) {
+    // find the game
+    var game = findGame(id);
+
+    // restore the game
+    restoreGame(game.game);
+}

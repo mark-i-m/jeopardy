@@ -40,7 +40,6 @@ function restoreCategory(ast) {
 
     // new category-container div
     var newCatCont = createCatContainer();
-    console.log();
     newCatCont.getElementsByTagName("input")[0].value = unescape(name);
 
     // add all questions
@@ -120,4 +119,17 @@ function findAllGames() {
     }
 
     return {games: allGames, nextId: ++nid};
+}
+
+function findGame(id) {
+    var game = null;
+
+    for (var i = 0; i < gamesList.length; i++) {
+        if (gamesList[i].id == id) {
+            game = gamesList[i];
+            break;
+        }
+    }
+
+    return game;
 }

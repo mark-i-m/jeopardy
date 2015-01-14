@@ -3,6 +3,8 @@
  * the GUI or is called by the GUI.
  */
 
+var gamesList = [];
+
 var gameName = "";
 var gameId = 0;
 
@@ -21,6 +23,16 @@ function initGame() {
 
     // set the new game name
     setGameName("New Game");
+
+    // load games and set nextId
+    var games = findAllGames();
+
+    gamesList = games.games;
+    populateGameList(games.games);
+    nextId = games.nextId;
+
+    // set the new game id
+    gameId = nextId++;
 }
 
 /**
@@ -233,22 +245,37 @@ function showAnswer() {
 function save() {
     console.log("save");
 
-    // produce xml and put it in web storage
-    saveToWebStorage(generateGameXML());
+    // save the ast in the game object
+    var gameObj = findGame(gameId);
+    var ast = generateGameAST();
+
+    // if the game is not already saved, do so
+    if (gameObj === null) {
+        gamesList.push({name: gameName, id: gameId, game: ast});
+    } else { // otherwise, just save the new AST
+        gameObj.game = ast;
+        gameObj.name = gameName;
+    }
+
+    // write the xml to webstorage
+    var xml = "";
+
+    for (var i = 0; i < gamesList.length; i++) {
+        xml += astToXML(gamesList[i].game);
+    }
+
+    saveToWebStorage(xml);
+    populateGameList(gamesList);
 }
 
 function saveas() {
     console.log("saveas");
-}
 
-function load() {
-    console.log("load");
+    // get the new Id
+    gameId = nextId++;
 
-    // retrieve the xml
-    var xml = localStorage.getItem("games");
-
-    // restore the game
-    restoreGame(parseXML(lexXML(xml)).tree);
+    // save the new game
+    save();
 }
 
 function delet() {

@@ -16,7 +16,8 @@
     <body onload="initGame();">
         <div id="editor" style="display:block">
             <div id="side-bar">
-                <input id="game-name" type="text" placeholder="Game name" />
+                <input id="game-name" type="text" placeholder="Game name"
+                    onkeyup="gameName = this.value;" />
 
                 <div id="play" onclick="play();">Play</div>
                 <span class="separater"></span>
@@ -24,7 +25,9 @@
                 <span class="separater"></span>
                 <div id="save" onclick="save();">Save</div>
                 <div id="save-as" onclick="saveas();">Save as...</div>
-                <div id="load" onclick="load();">Load</div>
+                <span class="separater"></span>
+                <span class="label">Saved Games:</span>
+                <span id="game-list" style="display:block;"></span>
                 <div id="delete" onclick="delet();">Delete</div>
             </div>
 

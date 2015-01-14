@@ -19,7 +19,6 @@ function generateGameXML() {
     var catContainers = document.getElementById("main-content")
                                 .getElementsByClassName("category-container");
 
-    var gameName = document.getElementById("game-name").value;
     xml += "<game name=\"" + escape(gameName) +"\" id=\"" + gameId + "\">\n";
 
     // go through each category
@@ -78,7 +77,7 @@ function generateQaXML(qaCont) {
 
     xml += "<qa q=\"" + escape(q)
         + "\" a=\"" + escape(a)
-        + "\" value=\"" + escape(v)
+        + "\" value=\"" + v
         + "\" />\n";
 
     return xml;
@@ -262,6 +261,82 @@ function parseXML(tokens) {
     }
 
     return {tree: ast, numTok: (i+1)};
+}
+
+// generate an ast for the XML that would be generated
+// for this game
+function generateGameAST() {
+    var game = {name: "game", attr: [], children: []};
+
+    // attributes
+    game.attr.push({attr:"name", value: escape(gameName)});
+    game.attr.push({attr:"id", value: gameId});
+
+    // children
+    var catContainers = document.getElementById("main-content")
+                                .getElementsByClassName("category-container");
+    for (var category = 0; category < catContainers.length; category++) {
+        game.children.push(generateCategoryAST(catContainers[category]));
+    }
+
+    return game;
+}
+
+function generateCategoryAST(catCont) {
+    var category = {name: "category", attr: [], children: []};
+
+    // attributes
+    var catName = catCont.getElementsByTagName("input")[0].value;
+    category.attr.push({attr:"name", value: escape(catName)});
+
+    // children
+    var qaContainers = catCont.getElementsByClassName("qa-container");
+    for (var qa = 0; qa < qaContainers.length; qa++) {
+        category.children.push(generateQaAST(qaContainers[qa]));
+    }
+
+    return category;
+}
+
+function generateQaAST(qaCont) {
+    var qa = {name: "qa", attr: [], children: []};
+
+    // attributes
+    var v = qaCont.getElementsByTagName("input")[0].value;
+    var q = qaCont.getElementsByTagName("textarea")[0].value;
+    var a = qaCont.getElementsByTagName("textarea")[1].value;
+
+    qa.attr.push({attr:"q", value: escape(q)});
+    qa.attr.push({attr:"a", value: escape(a)});
+    qa.attr.push({attr:"value", value: v});
+
+    return qa;
+}
+
+// assumes that qa tags are one-sided
+function astToXML(ast) {
+    var ret = "";
+
+    ret += "<" + ast.name;
+
+    for (var i = 0; i < ast.attr.length; i++) {
+        ret += " " + ast.attr[i].attr + "=\""
+                   + ast.attr[i].value + "\"";
+    }
+
+    if (ast.name === "qa") {
+        ret += " />\n";
+    } else {
+        ret += ">\n";
+
+        for (var i = 0; i < ast.children.length; i++) {
+            ret += "\t" + astToXML(ast.children[i]).replace("\n","\n\t");
+        }
+
+        ret += "</" + ast.name + ">\n";
+    }
+
+    return ret;
 }
 
 // debugging
