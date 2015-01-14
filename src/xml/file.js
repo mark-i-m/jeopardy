@@ -168,7 +168,7 @@ function getTagName(tok) {
  * form [{attr: "", value: ""}]
  */
 function getTagAttributes(tok) {
-    var attrs = [];
+    var attrs = {};
 
     // skip tag name
     var i = 0;
@@ -194,8 +194,8 @@ function getTagAttributes(tok) {
     for (var j = 0; j < pieces.length; j++) {
         var nameVal = pieces[j].split("=");
 
-        attrs.push({attr: nameVal[0],
-            value: nameVal[1].substring(1, nameVal[1].length-1)});
+        attrs[nameVal[0]] =
+            nameVal[1].substring(1, nameVal[1].length-1);
     }
 
     return attrs;
@@ -214,13 +214,13 @@ function getTagAttributes(tok) {
  * in creating the tree.
  *
  * Each tree is of the form
- * {name: "", attr: [], children: [tree]}
+ * {name: "", attr: {}, children: [tree]}
  * the attr list is exactly the same as those produced
  * by the lexer. Each child in the list is of the same
  * recurrsive form as the parent.
  */
 function parseXML(tokens) {
-    var ast = {name: "", attr: [], children: []};
+    var ast = {name: "", attr: {}, children: []};
 
     var outerMost = tokens[0];
     var i;
@@ -254,6 +254,7 @@ function parseXML(tokens) {
             // no children
             ast.name = outerMost.name;
             ast.attr = outerMost.attr;
+            ast.children = null;
             i = 0;
             break;
         case "closing":
@@ -266,11 +267,11 @@ function parseXML(tokens) {
 // generate an ast for the XML that would be generated
 // for this game
 function generateGameAST() {
-    var game = {name: "game", attr: [], children: []};
+    var game = {name: "game", attr: {}, children: []};
 
     // attributes
-    game.attr.push({attr:"name", value: escape(gameName)});
-    game.attr.push({attr:"id", value: gameId});
+    game.attr["name"] = escape(gameName);
+    game.attr["id"] = gameId;
 
     // children
     var catContainers = document.getElementById("main-content")
@@ -283,11 +284,11 @@ function generateGameAST() {
 }
 
 function generateCategoryAST(catCont) {
-    var category = {name: "category", attr: [], children: []};
+    var category = {name: "category", attr: {}, children: []};
 
     // attributes
     var catName = catCont.getElementsByTagName("input")[0].value;
-    category.attr.push({attr:"name", value: escape(catName)});
+    category.attr["name"] = escape(catName);
 
     // children
     var qaContainers = catCont.getElementsByClassName("qa-container");
@@ -299,32 +300,32 @@ function generateCategoryAST(catCont) {
 }
 
 function generateQaAST(qaCont) {
-    var qa = {name: "qa", attr: [], children: []};
+    var qa = {name: "qa", attr: [], children: null};
 
     // attributes
     var v = qaCont.getElementsByTagName("input")[0].value;
     var q = qaCont.getElementsByTagName("textarea")[0].value;
     var a = qaCont.getElementsByTagName("textarea")[1].value;
 
-    qa.attr.push({attr:"q", value: escape(q)});
-    qa.attr.push({attr:"a", value: escape(a)});
-    qa.attr.push({attr:"value", value: v});
+    qa.attr["q"] = escape(q);
+    qa.attr["a"] = escape(a);
+    qa.attr["value"] = v;
 
     return qa;
 }
 
-// assumes that qa tags are one-sided
+// tags whose ast node has null children are one-sided
 function astToXML(ast) {
     var ret = "";
 
     ret += "<" + ast.name;
 
-    for (var i = 0; i < ast.attr.length; i++) {
-        ret += " " + ast.attr[i].attr + "=\""
-                   + ast.attr[i].value + "\"";
+    for (a in ast.attr) {
+        ret += " " + a + "=\""
+                   + ast.attr[a] + "\"";
     }
 
-    if (ast.name === "qa") {
+    if (ast.children === null) {
         ret += " />\n";
     } else {
         ret += ">\n";
@@ -356,18 +357,20 @@ function printAST(ast) {
 
     ret += ast.name;
 
-    for (var i = 0; i < ast.attr.length; i++) {
-        ret += " " + ast.attr[i].attr + "=\""
-                   + ast.attr[i].value + "\"";
+    for (a in ast.attr) {
+        ret += " " + a + "=\""
+                   + ast.attr[a] + "\"";
     }
 
     ret += "\n";
 
-    for (var i = 0; i < ast.children.length; i++) {
-        ret += "\t" + printAST(ast.children[i]).replace("\n","\n\t");
+    if (ast.children !== null) {
+        for (var i = 0; i < ast.children.length; i++) {
+            ret += "\t" + printAST(ast.children[i]).replace("\n","\n\t");
+        }
     }
 
-    if(ast.children.length > 0) {
+    if(ast.children !== null && ast.children.length > 0) {
         ret += "\n";
     }
 

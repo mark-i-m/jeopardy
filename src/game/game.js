@@ -7,17 +7,22 @@
  * one generated from the given ast
  */
 function restoreGame(ast) {
+    // parameter validation
+    if (ast.name !== "game") {
+        throw "Error evaluating AST: not a <game> tag";
+    }
+    if (!(ast.attr.hasOwnProperty("name") &&
+        ast.attr.hasOwnProperty("id"))) {
+        throw "Error evaluating AST: <game> without id and/or name";
+    }
+
     // new main-content div
     var newMainCont = document.createElement("div");
     newMainCont.setAttribute("id", "main-content");
-    // Replace main-content
-    document.getElementById("editor").replaceChild(
-            newMainCont,
-            document.getElementById("main-content"));
 
     // restore the game name
-    setGameName(unescape(ast.attr[0].value));
-    gameId = ast.attr[1].value;
+    setGameName(unescape(ast.attr["name"]));
+    gameId = ast.attr["id"];
 
     // create the first button
     newMainCont.appendChild(createNewCatButton());
@@ -28,6 +33,10 @@ function restoreGame(ast) {
         newMainCont.appendChild(createNewCatButton());
     }
 
+    // Replace main-content
+    document.getElementById("editor").replaceChild(
+            newMainCont,
+            document.getElementById("main-content"));
 }
 
 /**
@@ -35,8 +44,16 @@ function restoreGame(ast) {
  * not add it to the DOM.
  */
 function restoreCategory(ast) {
+    // validation
+    if (ast.name !== "category") {
+        throw "Error evaluating AST: not a <category> tag";
+    }
+    if (!ast.attr.hasOwnProperty("name")) {
+        throw "Error evaluating AST: <category> without name";
+    }
+
     // name of the category
-    var name = ast.attr[0].value;
+    var name = ast.attr["name"];
 
     // new category-container div
     var newCatCont = createCatContainer();
@@ -58,10 +75,20 @@ function restoreCategory(ast) {
  * add it to the DOM.
  */
 function restoreQa(ast) {
+    // validation
+    if (ast.name !== "qa") {
+        throw "Error evaluating AST: not a <qa> tag";
+    }
+    if (!(ast.attr.hasOwnProperty("q") &&
+          ast.attr.hasOwnProperty("a") &&
+          ast.attr.hasOwnProperty("value"))) {
+        throw "Error evaluating AST: <qa> without q, a, and/or value";
+    }
+
     // value, question, and answer
-    var question = ast.attr[0].value;
-    var answer = ast.attr[1].value;
-    var value = ast.attr[2].value;
+    var question = ast.attr["q"];
+    var answer = ast.attr["a"];
+    var value = ast.attr["value"];
 
     // new qa-container div
     var newQaCont = createQaContainer();
@@ -105,10 +132,19 @@ function findAllGames() {
 
     // analyze each game
     for (var j = 0; j < parsedXML.length; j++) {
+        // parameter validation
+        if (parsedXML[j].name !== "game") {
+            throw "Error evaluating AST: not a <game> tag";
+        }
+        if (!(parsedXML[j].attr.hasOwnProperty("name") &&
+            parsedXML[j].attr.hasOwnProperty("id"))) {
+            throw "Error evaluating AST: <game> without id and/or name";
+        }
+
         var g = parsedXML[j];
 
-        var n = g.attr[0].value;
-        var i = g.attr[1].value;
+        var n = g.attr["name"];
+        var i = g.attr["id"];
 
         allGames.push({name: n, id: i, game: g});
 
