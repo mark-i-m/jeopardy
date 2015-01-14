@@ -30,7 +30,7 @@ html, body {
     height: 100%;
     float: left;
     padding: 5px;
-    background: red;
+    background: #cecece;
     overflow: hidden;
 }
 
@@ -41,21 +41,21 @@ html, body {
 }
 
 #side-bar > div:hover {
-    background:pink;
+    background: rgba(255,255,255,0.5);
 }
 
 #game-name {
     display: block;
     border: 0px;
+    background: rgba(0,0,0,0);
     border-radius: 3px;
-    background:red;
     margin-bottom: 20px;
     padding: 5px;
     width: calc(140px - 10px);
 }
 
 #game-name:hover {
-    background:pink;
+    background: rgba(255,255,255,0.5);
 }
 
 .separater {
@@ -72,7 +72,7 @@ html, body {
 }
 
 #game-list, #game-list:hover {
-    background: #D00;
+    background: rgba(0,0,0,0.1);
     border-radius: 3px;
     cursor: default;
     overflow: auto;
@@ -87,19 +87,15 @@ html, body {
     cursor: pointer;
 }
 
-#game-list > div:hover {
-    background: pink;
-}
-
-#game-list .selected {
-    background: pink;
+#game-list > div:hover, #game-list .selected {
+    background: rgba(255,255,255,0.5);
 }
 
 #main-content {
     width: calc(100% - 150px);
     height:100%;
     margin-left: 150px;
-    background: blue;
+    background: #ececec;
     overflow-x:hidden;
     overflow-y:auto;
 
@@ -109,7 +105,7 @@ html, body {
     width: 100%;
     height: 0px;
     padding-top: 5px;
-    background:gray;
+    background: rgba(0,0,0,0);
     overflow:hidden;
     border: dashed black 1px;
     transition: all 0.5s ease;
@@ -120,7 +116,7 @@ html, body {
     height:20px;
     padding-top:5px;
     padding-bottom:5px;
-    background:white;
+    background: rgba(0,0,0,0.2);
 }
 
 .remove-category-container, .remove-qa-container {
@@ -143,6 +139,7 @@ html, body {
 .category-container {
     width: 100%;
     overflow:hidden;
+    background: rgb(245, 239, 174);
 }
 
 .category-head {
@@ -151,11 +148,11 @@ html, body {
 }
 
 .expanded {
-    background: green;
+    background: rgba(0,0,0,0.2);
 }
 
 .collapsed{
-    background: cyan;
+    background: rgba(0,0,0,0);
 }
 
 .category-head input {
@@ -166,7 +163,7 @@ html, body {
     display:block;
     float:left;
     border-radius:3px;
-    width:400px;
+    width:40%;
 }
 
 input {
@@ -198,7 +195,6 @@ input:hover {
 }
 
 .qa-container {
-    background:yellow;
     padding-top:5px;
 }
 
@@ -217,7 +213,7 @@ textarea {
     -moz-user-select: text;
     -ms-user-select: text;
     user-select: text;
-    background:#FFED8B;
+    background:rgba(255,255,255,0.3);
 }
 
 #game-screen-close {
@@ -237,7 +233,7 @@ textarea {
 #game-table {
     width:100%;
     height:100%;
-    background:orange;
+    background: #ececec;
     overflow:auto;
 }
 
@@ -291,7 +287,7 @@ textarea {
     top: 2%;
     left: 2%;
     position:fixed;
-    background:white;
+    background: #cecece;
     border-radius:10px;
 }
 

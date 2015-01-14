@@ -34,6 +34,9 @@ function initGame() {
     gameId = nextId++;
 
     populateGameList(gamesList);
+
+    // take a snapshot
+    snapshot();
 }
 
 /**
@@ -143,6 +146,7 @@ function removeQa(ele) {
  */
 function setGameName(name) {
     gameName = name;
+    document.title = "Jeopardy - " + name;
     document.getElementById("game-name").value = gameName;
 }
 
