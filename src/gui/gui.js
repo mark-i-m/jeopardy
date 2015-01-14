@@ -340,7 +340,7 @@ function loadGame(id) {
     restoreGame(game.game);
 
     // clear the history and take the initial snapshot
-    gameHistory = [];
+    historyClear();
     snapshot();
 }
 

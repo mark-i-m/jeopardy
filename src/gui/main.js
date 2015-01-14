@@ -14,16 +14,6 @@ var nextId = 0;
  * Create an initial table setup with 1 row and column
  */
 function initGame() {
-    // create the first button
-    var button1 = createNewCatButton(); // create a "new category" button
-    document.getElementById("main-content").appendChild(button1);
-
-    // use this button to create the first category
-    var cat = newCategory(button1);
-
-    // set the new game name
-    setGameName("New Game");
-
     // load games and set nextId
     var games = findAllGames();
 
@@ -31,12 +21,9 @@ function initGame() {
     nextId = games.nextId;
     gamesList = games.games;
 
-    gameId = nextId++;
+    newGame();
 
     populateGameList(gamesList);
-
-    // take a snapshot
-    snapshot();
 }
 
 /**
@@ -273,6 +260,34 @@ function saveas() {
 
     // save the new game
     save();
+}
+
+function newGame() {
+    console.log("new game");
+
+    // remove the main-content
+    // and create a new one
+    var newMainCont = document.createElement("div");
+    newMainCont.setAttribute("id", "main-content");
+
+    document.getElementById("editor").replaceChild(
+            newMainCont,
+            document.getElementById("main-content"));
+
+    // create the first button
+    var button1 = createNewCatButton(); // create a "new category" button
+    document.getElementById("main-content").appendChild(button1);
+
+    // use this button to create the first category
+    var cat = newCategory(button1);
+
+    // set the new game name
+    setGameName("New Game");
+    gameId = nextId++;
+
+    // clear history and take a first snapshot
+    historyClear();
+    snapshot();
 }
 
 function delet() {

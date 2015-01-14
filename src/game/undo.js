@@ -37,3 +37,7 @@ function historyUpdate(ast) {
         gameHistory = gameHistory.slice(0,20);
     }
 }
+
+function historyClear() {
+    gameHistory = [];
+}
