@@ -287,8 +287,22 @@ function delet() {
 
 function undo() {
     console.log("undo");
+
+    historyMove(1);
 }
 
 function redo() {
     console.log("redo");
+
+    historyMove(-1);
+}
+
+function snapshot() {
+    console.log("snapshot");
+
+    // generate ast
+    var ast = generateGameAST();
+
+    // save it in history
+    historyUpdate(ast);
 }
