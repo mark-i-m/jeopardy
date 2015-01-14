@@ -4,6 +4,9 @@
  */
 
 var gameName = "";
+var gameId = 0;
+
+var nextId = 0;
 
 /**
  * Create an initial table setup with 1 row and column

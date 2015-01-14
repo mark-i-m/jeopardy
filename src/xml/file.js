@@ -20,7 +20,7 @@ function generateGameXML() {
                                 .getElementsByClassName("category-container");
 
     var gameName = document.getElementById("game-name").value;
-    xml += "<game name=\"" + escape(gameName) +"\">\n";
+    xml += "<game name=\"" + escape(gameName) +"\" id=\"" + gameId + "\">\n";
 
     // go through each category
     for (var category = 0; category < catContainers.length; category++) {

@@ -17,6 +17,7 @@ function restoreGame(ast) {
 
     // restore the game name
     setGameName(unescape(ast.attr[0].value));
+    gameId = ast.attr[1].value;
 
     // create the first button
     newMainCont.appendChild(createNewCatButton());
@@ -74,6 +75,9 @@ function restoreQa(ast) {
     return newQaCont;
 }
 
+/**
+ * Save xml to web storage
+ */
 function saveToWebStorage(xml) {
     // Check browser support for web storage
     if (typeof(Storage) != "undefined") {
@@ -82,4 +86,38 @@ function saveToWebStorage(xml) {
     } else {
         alert("Sorry, your browser does not support Web Storage...");
     }
+}
+
+/**
+ * Find all games in web storage and return their
+ * names, ids, and xml, along with the next unused id
+ * in the form
+ * {games: [{name: "name", id: #, game: <ast>}], nextId: #}
+ */
+function findAllGames() {
+    var allGames = [];
+    var nid = 0;
+
+    // get the xml
+    var xml = "<games>\n" +
+              localStorage.getItem("games") +
+              "</games>";
+    var parsedXML = parseXML(lexXML(xml)).tree.children;
+
+    // analyze each game
+    for (var i = 0; i < parsedXML.length; i++) {
+        var g = parsedXML[i];
+
+        var n = g.attr[0].value;
+        var i = g.attr[1].value;
+
+        allGames.push({name: n, id: i, game: g});
+
+        if (i > nid) {
+            nid = i;
+        }
+
+    }
+
+    return {games: allGames, nextId: ++nid};
 }
