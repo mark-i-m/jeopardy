@@ -104,8 +104,8 @@ function findAllGames() {
     var parsedXML = parseXML(lexXML(xml)).tree.children;
 
     // analyze each game
-    for (var i = 0; i < parsedXML.length; i++) {
-        var g = parsedXML[i];
+    for (var j = 0; j < parsedXML.length; j++) {
+        var g = parsedXML[j];
 
         var n = g.attr[0].value;
         var i = g.attr[1].value;
@@ -115,7 +115,6 @@ function findAllGames() {
         if (i > nid) {
             nid = i;
         }
-
     }
 
     return {games: allGames, nextId: ++nid};
