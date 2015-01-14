@@ -288,3 +288,7 @@ function delet() {
 function undo() {
     console.log("undo");
 }
+
+function redo() {
+    console.log("redo");
+}
