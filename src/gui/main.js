@@ -280,6 +280,11 @@ function delet() {
 
     // find the object
     var gameObj = findGame(gameId);
+
+    if (gameObj === null) {
+        return;
+    }
+
     var index = gamesList.indexOf(gameObj);
 
     // remove it
