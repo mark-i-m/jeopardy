@@ -27,12 +27,13 @@ function initGame() {
     // load games and set nextId
     var games = findAllGames();
 
-    gamesList = games.games;
-    populateGameList(games.games);
-    nextId = games.nextId;
-
     // set the new game id
+    nextId = games.nextId;
+    gamesList = games.games;
+
     gameId = nextId++;
+
+    populateGameList(gamesList);
 }
 
 /**

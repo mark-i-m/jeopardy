@@ -22,7 +22,7 @@ function restoreGame(ast) {
 
     // restore the game name
     setGameName(unescape(ast.attr["name"]));
-    gameId = ast.attr["id"];
+    gameId = parseInt(ast.attr["id"]);
 
     // create the first button
     newMainCont.appendChild(createNewCatButton());
@@ -122,7 +122,7 @@ function saveToWebStorage(xml) {
  */
 function findAllGames() {
     var allGames = [];
-    var nid = 0;
+    var nid = -1;
 
     // get the xml
     var xml = "<games>\n" +

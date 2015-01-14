@@ -293,7 +293,14 @@ function populateGameList(games) {
 
         var option = document.createElement("div");
         option.setAttribute("onclick", "loadGame(" + id + ");");
+        option.setAttribute("id", "game-list-" + id);
         option.innerHTML = unescape(name);
+
+        if (id === gameId) {
+            option.setAttribute("class", "selected");
+        } else {
+            option.setAttribute("class", "");
+        }
 
         list.appendChild(option);
     }
@@ -306,8 +313,22 @@ function loadGame(id) {
     // find the game
     var game = findGame(id);
 
+    if (game === null) {
+        throw "Game " + id + " not found";
+    }
+
+    // mark the game in the game list
+    if (findGame(gameId) !== null) {
+        var old = document.getElementById("game-list-" + gameId);
+        old.className = old.className.replace(/selected/g, "");
+    }
+
+    var newGame = document.getElementById("game-list-" + id);
+    newGame.className += " selected";
+
     // restore the game
     restoreGame(game.game);
+
 }
 
 function updateGamesList() {

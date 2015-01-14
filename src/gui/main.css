@@ -91,6 +91,10 @@ html, body {
     background: pink;
 }
 
+#game-list .selected {
+    background: pink;
+}
+
 #main-content {
     width: calc(100% - 150px);
     height:100%;
