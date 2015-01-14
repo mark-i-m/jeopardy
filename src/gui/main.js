@@ -22,8 +22,6 @@ function initGame() {
     gamesList = games.games;
 
     newGame();
-
-    populateGameList(gamesList);
 }
 
 /**
@@ -285,8 +283,11 @@ function newGame() {
     setGameName("New Game");
     gameId = nextId++;
 
+    // repopulate the list to fix highlighting
+    populateGameList(gamesList);
+
     // clear history and take a first snapshot
-    historyClear();
+    historyClear(;
     snapshot();
 }
 
