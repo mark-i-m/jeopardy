@@ -1,6 +1,12 @@
 Jeopardy Web App
 ================
 
+Coming Soon (Eventually)
+------------------------
+- Multiple player mode
+- Single player mode
+- Automatic and manual scoring
+
 Features
 --------
 - Create, edit, save, and load multiple games in your browser
