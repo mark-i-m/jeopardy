@@ -31,20 +31,20 @@
     background: rgba(255,255,255,0.5);
 }
 
-#sidebar .separater {
+#side-bar .separater {
     height: 0px;
     border-bottom: 1px solid rgba(0,0,0,0.5);
     display:block;
     margin: 20px auto;
 }
 
-#sidebar .label {
+#side-bar .label {
     display:block;
     margin: 0px auto;
     padding-left: 5px;
 }
 
-#sidebar .disabled, #sidebar .disabled:hover {
+#side-bar .disabled, #sidebar .disabled:hover {
     cursor: default !important;
     color: rgba(0,0,0,0.5) !important;
     background: rgba(0,0,0,0) !important;
