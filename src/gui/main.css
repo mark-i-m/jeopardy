@@ -91,6 +91,10 @@ html, body {
     background: rgba(255,255,255,0.5);
 }
 
+#game-list .selected, #game-list .selected:hover {
+    cursor: default;
+}
+
 #main-content {
     width: calc(100% - 150px);
     height:100%;

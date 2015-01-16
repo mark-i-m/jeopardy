@@ -316,38 +316,24 @@ function populateGameList(games) {
     }
 }
 
-/**
- * Restores the game with the given id
- */
-function loadGame(id) {
-    // find the game
-    var game = findGame(id);
-
-    if (game === null) {
-        throw "Game " + id + " not found";
-    }
-
-    // mark the game in the game list
-    if (findGame(gameId) !== null) {
-        var old = document.getElementById("game-list-" + gameId);
-        old.className = old.className.replace(/selected/g, "");
-    }
-
-    var newGame = document.getElementById("game-list-" + id);
-    newGame.className += " selected";
-
-    // restore the game
-    restoreGame(game.game);
-
-    // clear the history and take the initial snapshot
-    historyClear();
-    snapshot();
-}
-
 function updateGamesList() {
     // write the xml to webstorage
     var xml = generateAllGameXML();
 
     saveToWebStorage(xml);
     populateGameList(gamesList);
+}
+
+function confirmLeaveGame() {
+    try {
+        if (!saved) {
+            if (confirm("The game you are leaving has unsaved changes. Would you like to save now? If you do not, the changes will be lost!\n\nClick OK to save, or Cancel to proceed without saving.")) {
+                save();
+            } else {
+                console.log("User has chosen not to save changes.");
+            }
+        }
+    } catch (e) {
+        console.log("User has blocked confirmation messages. Proceeding to new game without the opportunity to save!");
+    }
 }

@@ -6,6 +6,8 @@
 var gameHistory = [];
 var historyIndex = 0;
 
+var saved = false; // whether this game has unsaved changes
+
 // <0 -> more recent
 // >0 -> older
 function historyMove(delta) {

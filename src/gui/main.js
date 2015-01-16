@@ -21,6 +21,9 @@ function initGame() {
     nextId = games.nextId;
     gamesList = games.games;
 
+    // to prevent "unsaved changes" messages
+    saved = true;
+
     newGame();
 }
 
@@ -247,6 +250,8 @@ function save() {
         gameObj.name = gameName;
     }
 
+    saved = true;
+
     updateGamesList();
 }
 
@@ -260,7 +265,51 @@ function saveas() {
     save();
 }
 
+/**
+ * Restores the game with the given id
+ */
+function loadGame(id) {
+    // make sure the game is not already loaded
+    if (gameId == id) {
+        return;
+    }
+
+    // Ask the user to continue or wait and save the
+    // current game
+    confirmLeaveGame();
+
+    // find the game
+    var game = findGame(id);
+
+    if (game === null) {
+        throw "Game " + id + " not found";
+    }
+
+    // mark the game in the game list
+    if (findGame(gameId) !== null) {
+        var old = document.getElementById("game-list-" + gameId);
+        old.className = old.className.replace(/selected/g, "");
+    }
+
+    var newGame = document.getElementById("game-list-" + id);
+    newGame.className += " selected";
+
+    // restore the game
+    restoreGame(game.game);
+
+    // clear the history and take the initial snapshot
+    historyClear();
+    snapshot();
+
+    // the game has no changes yet
+    saved = true;
+}
+
 function newGame() {
+    // Ask the user to continue or wait and save the
+    // current game
+    confirmLeaveGame();
+
     console.log("new game");
 
     // remove the main-content
@@ -289,6 +338,9 @@ function newGame() {
     // clear history and take a first snapshot
     historyClear();
     snapshot();
+
+    // game has never been saved
+    saved = false;
 }
 
 function delet() {
@@ -324,12 +376,18 @@ function undo() {
     console.log("undo");
 
     historyMove(1);
+
+    // this game now has unsaved changes
+    saved = false;
 }
 
 function redo() {
     console.log("redo");
 
     historyMove(-1);
+
+    // this game now has unsaved changes
+    saved = false;
 }
 
 function snapshot() {
@@ -340,4 +398,7 @@ function snapshot() {
 
     // save it in history
     historyUpdate(ast);
+
+    // this game now has unsaved changes
+    saved = false;
 }
