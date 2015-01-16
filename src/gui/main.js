@@ -344,6 +344,13 @@ function newGame() {
 }
 
 function delet() {
+    // find the object
+    var gameObj = findGame(gameId);
+
+    if (gameObj === null) {
+        return;
+    }
+
     // confirm with the user
     // if the user asked not to be notified again, simply proceed
     try {
@@ -355,13 +362,6 @@ function delet() {
     }
 
     console.log("delete");
-
-    // find the object
-    var gameObj = findGame(gameId);
-
-    if (gameObj === null) {
-        return;
-    }
 
     var index = gamesList.indexOf(gameObj);
 
