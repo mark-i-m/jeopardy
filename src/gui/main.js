@@ -173,6 +173,54 @@ function gameExit() {
 
     // close question string, just in case
     closeQa();
+
+    // reset the scores
+    players = {};
+    updateScoreList();
+
+    // reset the setup screen
+    resetSetup();
+}
+
+// game setup in game mode
+function addPlayer (name) {
+    // validate player input
+    if (name === "" || name === undefined) {
+        alert("Player name cannot be empty");
+        return;
+    }
+    if (players.hasOwnProperty(name)) {
+        alert("This player already exists");
+        return;
+    }
+
+    // display the player
+    document.getElementById("player-list").innerHTML +=
+        "<span>" + name + "</span>";
+
+    // players start with score 0
+    players[name] = 0;
+}
+
+// start game
+function startGame () {
+    // make sure there is at least one player
+    // this is a bit hacky, but it works
+    var atLeastOne = false;
+    for(prop in players) {
+        atLeastOne = true;
+        break;
+    }
+    if (!atLeastOne) {
+        alert("There must be at least one player");
+        return;
+    }
+
+    // update the score list
+    updateScoreList();
+
+    // hide the setup screen
+    document.getElementById("game-setup").style.display = "none";
 }
 
 /**

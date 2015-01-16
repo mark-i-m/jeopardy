@@ -368,3 +368,38 @@ function enableDeleteButton() {
     var del = document.getElementById("delete");
     del.className = del.className.replace("disabled", "enabled");
 }
+
+function updateScoreList() {
+    // get the scores element for convenience
+    var scores = document.getElementById("scores");
+
+    // create the new score table
+    var scoresTable = document.createElement("div");
+
+    // replace the old one
+    scores.replaceChild(scoresTable, scores.firstElementChild);
+
+    // add the scores
+    for (player in players) {
+        var score = document.createElement("div");
+        score.innerHTML = player + " : $" + players[player];
+
+        scoresTable.appendChild(score);
+    }
+}
+
+function resetSetup() {
+    // get the elements
+    var gameSetup = document.getElementById("game-setup");
+    var playerList = document.getElementById("player-list");
+
+    // create the new list element
+    var newList = document.createElement("div");
+    newList.setAttribute("id", "player-list");
+
+    // replace the old one
+    gameSetup.replaceChild(newList, playerList);
+
+    // make setup visible
+    gameSetup.style.display = "block";
+}
