@@ -3,9 +3,10 @@ Jeopardy Web App
 
 Coming Soon (Eventually)
 ------------------------
-- Multiple player mode
 - Single player mode
+- Multiple player mode
 - Automatic and manual scoring
+- More flexible setup screen
 
 Features
 --------
