@@ -242,6 +242,8 @@ function setQa(value, question, answer) {
 
     document.getElementById("game-a").innerHTML =
         answer;
+
+    currentQuestionValue = value;
 }
 
 /**
@@ -262,6 +264,8 @@ function closeQa() {
         .style.display = "none";
     document.getElementById("game-q-answer")
         .style.display = "inline-block";
+
+    currentQuestionValue = 0;
 }
 
 /**

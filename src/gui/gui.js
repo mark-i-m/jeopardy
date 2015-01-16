@@ -403,6 +403,7 @@ function createPlayerContainer(p, s) {
     // player-score
     var score = document.createElement("div");
     score.setAttribute("class", "player-score");
+    score.setAttribute("id", "player-" + p);
     score.innerHTML = "$" + s;
 
     cont.appendChild(score);
@@ -416,6 +417,7 @@ function createPlayerContainer(p, s) {
     // correct-button
     var correct = document.createElement("div");
     correct.setAttribute("class", "correct-button");
+    correct.setAttribute("onclick", "increaseScore('" + p + "')");
     correct.innerHTML = "Y";
 
     buttons.appendChild(correct);
@@ -423,6 +425,7 @@ function createPlayerContainer(p, s) {
     // incorrect-button
     var incorrect = document.createElement("div");
     incorrect.setAttribute("class", "incorrect-button");
+    incorrect.setAttribute("onclick", "decreaseScore('" + p + "')");
     incorrect.innerHTML = "N";
 
     buttons.appendChild(incorrect);
