@@ -130,11 +130,11 @@
 }
 
 #game-table td:hover {
-    color: blue;
+    color: #0080FF;
 }
 
 #game-table .marked-q {
-    color: purple;
+    color: #cecece;
 }
 
 /* Game question screen */
@@ -150,6 +150,12 @@
 
 #game-q, #game-a {
     margin: 30px 0px;
+    text-align: center;
+    font-size: 18pt;
+}
+
+#game-a {
+    color: red;
 }
 
 #game-answer-box {
