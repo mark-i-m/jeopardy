@@ -186,9 +186,6 @@
     display: inline-block;
     border-radius: 5px;
     cursor: pointer;
-}
-
-#game-q-check {
     background: rgba(255,255,255,0.5);
 }
 
@@ -196,21 +193,14 @@
     background: rgba(255,255,255,0.7);
 }
 
-#game-q-close, #game-q-incorrect {
-    background:red;
-    color: white;
-}
-
-#game-q-close:hover, #game-q-incorrect:hover {
+#game-q-close:hover {
     background:pink;
+    color: red;
 }
 
-#game-q-answer, #game-q-correct {
-    background:green;
-}
-
-#game-q-answer:hover, #game-q-correct:hover {
+#game-q-answer:hover {
     background:lightgreen;
+    color: green;
 }
 
 /* Player scores list */

@@ -242,7 +242,7 @@ function highlightPlayerScore(player, color) {
     setTimeout(function(){
         score.style.transition = "2s";
         score.style.background = "";
-    }, 500);
+    }, 1000);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
