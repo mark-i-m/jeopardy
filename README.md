@@ -3,9 +3,6 @@ Jeopardy Web App
 
 Coming Soon (Eventually)
 ------------------------
-- Single player mode
-- Multiple player mode
-- Automatic and manual scoring
 - More flexible setup screen
 
 Features
@@ -19,6 +16,10 @@ Features
 - Editor mode has undo and redo functions
 
 - Runs completely in the browser
+
+- Single player mode
+- Multiple player mode
+- Automatic and manual scoring
 
 Tested Browsers
 ---------------
