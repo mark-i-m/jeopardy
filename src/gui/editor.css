@@ -1,0 +1,126 @@
+#main-content {
+    width: calc(100% - 150px);
+    height:100%;
+    margin-left: 150px;
+    background: #ececec;
+    overflow-x:hidden;
+    overflow-y:auto;
+
+}
+
+#main-content .new-category-container, #main-content .new-qa-container {
+    width: 100%;
+    height: 0px;
+    padding-top: 5px;
+    background: rgba(0,0,0,0);
+    overflow:hidden;
+    border: dotted black 1px;
+    border-radius: 3px;
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+#main-content .new-category-container:hover, #main-content .new-qa-container:hover {
+    height:20px;
+    padding-top:5px;
+    padding-bottom:5px;
+    background: rgba(0,0,0,0.2);
+}
+
+#main-content .remove-category-container, #main-content .remove-qa-container {
+    width: 20px;
+    height: 20px;
+    background: red;
+    float:right;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align:center;
+    color: white;
+    margin-right:5px;
+}
+
+#main-content .remove-category-container {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#main-content .category-container {
+    width: 100%;
+    overflow:hidden;
+    background: rgb(245, 239, 174);
+}
+
+#main-content .category-head {
+    height: 30px;
+    overflow:hidden;
+}
+
+#main-content .expanded {
+    background: rgba(0,0,0,0.2);
+}
+
+#main-content .collapsed{
+    background: rgba(0,0,0,0);
+}
+
+#main-content .category-head input {
+    background: rgba(0,0,0,0);
+    border:0px;
+    height: 20px;
+    margin: 5px;
+    display:block;
+    float:left;
+    border-radius:3px;
+    width:40%;
+}
+
+#main-content input {
+    font-family: sans-serif;
+    font-size: 12pt;
+}
+
+#main-content input:hover {
+    background: rgba(255,255,255,0.5);
+}
+
+#main-content .category-head-diamond {
+    height: 20px;
+    margin: 5px;
+    float:left;
+    cursor: pointer;
+}
+
+#main-content .category-label {
+    height: 20px;
+    margin-right:20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+#main-content .category-qas {
+    margin-left:20px;
+}
+
+#main-content .qa-container {
+    padding-top:5px;
+}
+
+#main-content input[type=number] {
+    border:0px;
+    background:rgba(0,0,0,0);
+    margin-bottom: 5px;
+}
+
+#main-content textarea {
+    width:100%;
+    border: 0px;
+    border-radius: 3px;
+    -webkit-touch-callout: text;
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+    background:rgba(255,255,255,0.5);
+}

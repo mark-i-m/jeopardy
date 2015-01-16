@@ -1,0 +1,118 @@
+#game-screen-close {
+    width: 20px;
+    height: 20px;
+    text-align:center;
+    color:white;
+    background:red;
+    border-radius:0px 0px 0px 10px;
+    position:absolute;
+    right:0px;
+    top:0px;
+    z-index:100;
+    cursor:pointer;
+}
+
+#game-table {
+    width:100%;
+    height:100%;
+    background: #ececec;
+    overflow:auto;
+}
+
+#game-table > table {
+    height:100%;
+    margin: 0px auto;
+    position:relative;
+    right:0px;
+    top:0px;
+    background:inherit;
+    table-layout: fixed;
+}
+
+#game-table th {
+    min-width:200px;
+    height: 50px;
+    border-bottom: solid black 1px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#game-table td {
+    min-width:200px;
+    text-align: center;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-size: 24pt;
+    display:table-cell;
+}
+
+#game-table td:hover {
+    color: blue;
+}
+
+#game-table .marked-q {
+    color: purple;
+}
+
+#game-question-screen {
+    width:95%;
+    height:95%;
+    padding: 0.5%;
+    top: 2%;
+    left: 2%;
+    position:fixed;
+    background: #cecece;
+    border-radius:10px;
+}
+
+#game-question-screen > div {
+    width: 100%;
+}
+
+#game-q-label {
+    text-align: center;
+    border-bottom: solid 1px black;
+    font-size: 24pt;
+}
+
+#game-q, #game-a {
+    margin: 30px 0px;
+}
+
+#game-question-buttons {
+    text-align: center;
+}
+
+#game-screen .game-q-button {
+    width: 75px;
+    height: 20px;
+    padding: 15px 0px;
+    margin: 0px 10px;
+    display: inline-block;
+    border-radius: 5px;
+}
+
+#game-q-close {
+    background:red;
+    color: white;
+}
+
+#game-q-close:hover {
+    background:pink;
+}
+
+#game-q-answer {
+    background:green;
+}
+
+#game-q-answer:hover {
+    background:lightgreen;
+}

@@ -1,0 +1,79 @@
+#side-bar {
+    width:140px;
+    height: 100%;
+    float: left;
+    padding: 5px;
+    background: #cecece;
+    overflow: hidden;
+}
+
+#side-bar > div {
+    padding: 5px 0px 5px 15px;
+    cursor:pointer;
+    border-radius: 3px;
+}
+
+#side-bar > div:hover {
+    background: rgba(255,255,255,0.5);
+}
+
+#game-name {
+    display: block;
+    border: 0px;
+    background: rgba(0,0,0,0);
+    border-radius: 3px;
+    margin-bottom: 20px;
+    padding: 5px;
+    width: calc(140px - 10px);
+}
+
+#game-name:hover {
+    background: rgba(255,255,255,0.5);
+}
+
+#sidebar .separater {
+    height: 0px;
+    border-bottom: 1px solid rgba(0,0,0,0.5);
+    display:block;
+    margin: 20px auto;
+}
+
+#sidebar .label {
+    display:block;
+    margin: 0px auto;
+    padding-left: 5px;
+}
+
+#sidebar .disabled, #sidebar .disabled:hover {
+    cursor: default !important;
+    color: rgba(0,0,0,0.5) !important;
+    background: rgba(0,0,0,0) !important;
+}
+
+#game-list, #game-list:hover {
+    background: rgba(0,0,0,0.1);
+    border-radius: 3px;
+    cursor: default;
+    overflow: auto;
+    margin-bottom: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: calc(5 * 30px);
+}
+
+#game-list > div {
+    padding: 5px 0px 5px 15px;
+    cursor: pointer;
+}
+
+#game-list > div:hover, #game-list .selected {
+    background: rgba(255,255,255,0.5);
+}
+
+#game-list .selected, #game-list .selected:hover {
+    cursor: default;
+}
+
+#delete:hover {
+    color: red;
+}
