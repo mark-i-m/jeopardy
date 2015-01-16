@@ -108,8 +108,14 @@
                 <div id="game-q-label"></div>
                 <div id="game-q"></div>
                 <div id="game-a" style="display:none;"></div>
+                <input type="text" class="single-player-visible"
+                       id="game-answer-box"
+                       placeholder="Answer here ... " />
                 <div class="game-q-buttonset"
                      id="game-question-buttons">
+                    <div class="game-q-button single-player-visible"
+                         id="game-q-check"
+                         onclick="checkAnswer();">Check</div>
                     <div class="game-q-button"
                          id="game-q-answer"
                          onclick="showAnswer();">Answer</div>

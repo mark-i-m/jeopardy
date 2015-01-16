@@ -374,18 +374,20 @@ function delet() {
 // Code to enter and exit game mode
 ////////////////////////////////////////////////////////////////////////////////
 
-// start game
+/**
+ * Called from the setup screen to actually start playing
+ */
 function startGame () {
-    // make sure there is at least one player
-    // this is a bit hacky, but it works
-    var atLeastOne = false;
-    for(prop in players) {
-        atLeastOne = true;
-        break;
-    }
-    if (!atLeastOne) {
+    // check the number of players
+    if (numPlayers < 1) {
         alert("There must be at least one player");
         return;
+    } else if (numPlayers == 1) {
+        // single player mode
+        setSinglePlayerMode();
+    } else {
+        // otherwise multi-player mode
+        setMultiPlayerMode();
     }
 
     // update the score list
@@ -414,6 +416,7 @@ function gameExit() {
 
     // reset the scores
     players = {};
+    numPlayers = 0;
     updateScoreList();
 
     // reset the setup screen
@@ -442,6 +445,9 @@ function addPlayer (name) {
 
     // players start with score 0
     players[name] = 0;
+
+    // player count
+    numPlayers++;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -467,6 +473,11 @@ function closeQa() {
     document.getElementById("game-q-answer")
         .style.display = "inline-block";
 
+    document.getElementById("game-q-check")
+        .style.display = "inline-block";
+    document.getElementById("game-answer-box")
+        .value = "";
+
     currentQuestionValue = 0;
 }
 
@@ -478,6 +489,39 @@ function showAnswer() {
     document.getElementById("game-a")
         .style.display = "block";
     document.getElementById("game-q-answer")
+        .style.display = "none";
+}
+
+/**
+ * Check the answer entered into the answer box
+ */
+function checkAnswer() {
+    // get the user's answer
+    var answerBox = document.getElementById("game-answer-box");
+    var answer = answerBox.value;
+
+    // get the correct answer
+    var correct = document.getElementById("game-a").innerHTML;
+
+    // compare them
+    if (answer === correct) {
+        // increase the player's score
+        // this is a bit hacky, but it works
+        // since this is only for single-player mode
+        for (p in players) {
+            increaseScore(p);
+        }
+    } else {
+        // otherwise decrement
+        for (p in players) {
+            decreaseScore(p);
+        }
+    }
+
+    // show the answer, also
+    showAnswer();
+
+    document.getElementById("game-q-check")
         .style.display = "none";
 }
 

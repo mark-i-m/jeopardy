@@ -238,3 +238,29 @@ function resetSetup() {
     // make setup visible
     gameSetup.style.display = "block";
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// Code to manipulate the single/multi player modes
+////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Turns on single player mode
+ */
+function setSinglePlayerMode() {
+    var answer = document.getElementById("game-answer-box");
+    var check = document.getElementById("game-q-check");
+
+    answer.className = answer.className.replace("single-player-hidden", "single-player-visible");
+    check.className = check.className.replace("single-player-hidden", "single-player-visible");
+}
+
+/**
+ * Turns on multi player mode
+ */
+function setMultiPlayerMode() {
+    var answer = document.getElementById("game-answer-box");
+    var check = document.getElementById("game-q-check");
+
+    answer.className = answer.className.replace("single-player-visible", "single-player-hidden");
+    check.className = check.className.replace("single-player-visible", "single-player-hidden");
+}

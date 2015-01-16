@@ -4,6 +4,7 @@
 
 // The list of players in this game
 var players = {};
+var numPlayers = 0;
 
 // value of the current question
 var currentQuestionValue = 0;
