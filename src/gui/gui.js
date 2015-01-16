@@ -381,11 +381,54 @@ function updateScoreList() {
 
     // add the scores
     for (player in players) {
-        var score = document.createElement("div");
-        score.innerHTML = player + " : $" + players[player];
+        var score = createPlayerContainer(player, players[player]);
 
         scoresTable.appendChild(score);
     }
+}
+
+// does not add to the DOM
+function createPlayerContainer(p, s) {
+    // create the container element
+    var cont = document.createElement("div");
+    cont.setAttribute("class", "player");
+
+    // player-name
+    var name = document.createElement("div");
+    name.setAttribute("class", "player-name");
+    name.innerHTML = p;
+
+    cont.appendChild(name);
+
+    // player-score
+    var score = document.createElement("div");
+    score.setAttribute("class", "player-score");
+    score.innerHTML = "$" + s;
+
+    cont.appendChild(score);
+
+    // player-buttons
+    var buttons = document.createElement("div");
+    buttons.setAttribute("class", "player-buttons");
+
+    cont.appendChild(buttons);
+
+    // correct-button
+    var correct = document.createElement("div");
+    correct.setAttribute("class", "correct-button");
+    correct.innerHTML = "Y";
+
+    buttons.appendChild(correct);
+
+    // incorrect-button
+    var incorrect = document.createElement("div");
+    incorrect.setAttribute("class", "incorrect-button");
+    incorrect.innerHTML = "N";
+
+    buttons.appendChild(incorrect);
+
+    // return the container
+    return cont;
 }
 
 function resetSetup() {

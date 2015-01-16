@@ -14,7 +14,7 @@
 
 #game-setup, #game-question-screen {
     width:95%;
-    height:95%;
+    height: calc(95% - 160px);
     padding: 0.5%;
     top: 2%;
     left: 2%;
@@ -82,7 +82,7 @@
 
 #game-table {
     width:100%;
-    height:calc(100% - 100px);
+    height:calc(100% - 160px);
     background: #ececec;
     overflow:auto;
 }
@@ -132,8 +132,10 @@
     margin: 30px 0px;
 }
 
-#game-question-buttons {
+#game-screen .game-q-buttonset {
     text-align: center;
+    margin: 20px 0px;
+    font-size: 12pt;
 }
 
 #game-screen .game-q-button {
@@ -143,31 +145,33 @@
     margin: 0px 10px;
     display: inline-block;
     border-radius: 5px;
+    cursor: pointer;
 }
 
-#game-q-close {
+#game-q-close, #game-q-incorrect {
     background:red;
     color: white;
 }
 
-#game-q-close:hover {
+#game-q-close:hover, #game-q-incorrect:hover {
     background:pink;
 }
 
-#game-q-answer {
+#game-q-answer, #game-q-correct {
     background:green;
 }
 
-#game-q-answer:hover {
+#game-q-answer:hover, #game-q-correct:hover {
     background:lightgreen;
 }
 
 #scores {
     width: 100%;
-    height: 100px;
+    height: 150px;
     background: #cecece;
     overflow-x: auto;
     overflow-y: hidden;
+    padding: 5px 0px;
 }
 
 #scores > div {
@@ -176,10 +180,47 @@
     height:100%;
 }
 
-#scores > div > div {
+#scores .player {
     display: table-cell;
     text-align: center;
     vertical-align: middle;
     font-size: 24pt;
-    padding: 0px 50px;
+    padding: 0px 10px;
+    min-width: 200px;
+}
+
+#scores .player:not(:last-child) {
+    border-right: 1px #b3b3b3 solid;
+}
+
+.player-name {
+    font-size: 18pt;
+    color: rgb(87, 87, 87);
+}
+
+.player-score {
+    margin: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    color: #333;
+}
+
+.correct-button, .incorrect-button {
+    display: inline-block;
+    width: 50px;
+    height: 35px;
+    padding: 7.5px 0px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.correct-button {
+    background: lightgreen;
+    color: green;
+    margin-right: 10px;
+}
+
+.incorrect-button {
+    background: pink;
+    color: red;
 }
