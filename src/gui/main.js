@@ -292,6 +292,16 @@ function newGame() {
 }
 
 function delet() {
+    // confirm with the user
+    // if the user asked not to be notified again, simply proceed
+    try {
+        if (!confirm("Delete the currently loaded game? This action CANNOT be undone.\n\nClick OK to delete the game.")) {
+            return;
+        }
+    } catch (e) {
+        console.log("Delete game confirmation was blocked. Proceeding to delete!");
+    }
+
     console.log("delete");
 
     // find the object
