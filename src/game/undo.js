@@ -22,6 +22,9 @@ function historyMove(delta) {
 
     // reload the game
     restoreGame(gameHistory[historyIndex]);
+
+    // update the undo/redo buttons
+    updateUndoButtons();
 }
 
 function historyUpdate(ast) {
@@ -38,6 +41,9 @@ function historyUpdate(ast) {
     if (len > 20) {
         gameHistory = gameHistory.slice(0,20);
     }
+
+    // update the undo/redo buttons
+    updateUndoButtons();
 }
 
 function historyClear() {

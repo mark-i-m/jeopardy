@@ -337,3 +337,23 @@ function confirmLeaveGame() {
         console.log("User has blocked confirmation messages. Proceeding to new game without the opportunity to save!");
     }
 }
+
+// disable and enable the buttons for more aesthetics
+function updateUndoButtons() {
+    var undo = document.getElementById("undo");
+    var redo = document.getElementById("redo");
+
+    // if no undo history, disable undo button
+    if (historyIndex >= gameHistory.length-1) {
+        undo.className = undo.className.replace("enabled", "disabled");
+    } else {
+        undo.className = undo.className.replace("disabled", "enabled");
+    }
+
+    // if no redo history, disable redo button
+    if (historyIndex == 0) {
+        redo.className = redo.className.replace("enabled", "disabled");
+    } else {
+        redo.className = redo.className.replace("disabled", "enabled");
+    }
+}
