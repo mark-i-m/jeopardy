@@ -418,7 +418,7 @@ function createPlayerContainer(p, s) {
     var correct = document.createElement("div");
     correct.setAttribute("class", "correct-button");
     correct.setAttribute("onclick", "increaseScore('" + p + "')");
-    correct.innerHTML = "Y";
+    correct.innerHTML = "&#x2713;";
 
     buttons.appendChild(correct);
 
@@ -426,7 +426,7 @@ function createPlayerContainer(p, s) {
     var incorrect = document.createElement("div");
     incorrect.setAttribute("class", "incorrect-button");
     incorrect.setAttribute("onclick", "decreaseScore('" + p + "')");
-    incorrect.innerHTML = "N";
+    incorrect.innerHTML = "&#x2717;";
 
     buttons.appendChild(incorrect);
 
