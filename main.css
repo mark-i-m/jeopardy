@@ -1,3 +1,8 @@
+/**
+ * This stylesheet contains rules for all elements on the page
+ */
+
+/* Disallow text selection outside the appropriate controls */
 * {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -25,6 +30,7 @@ html, body {
     overflow:hidden;
 }
 
+/* Allow text selection in the appropriate controls */
 textarea, input[type=text], input[type=number] {
     -webkit-touch-callout: text;
     -webkit-user-select: text;

@@ -3,6 +3,10 @@
  * for games
  */
 
+////////////////////////////////////////////////////////////////////////////////
+// Generate game XML from current game state
+////////////////////////////////////////////////////////////////////////////////
+
 /**
  * Generates xml for the currently loaded game
  */
@@ -82,6 +86,10 @@ function generateQaXML(qaCont) {
 
     return xml;
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// Lex the game XML
+////////////////////////////////////////////////////////////////////////////////
 
 /**
  * A simple lexer for my "brand" of simple XML.
@@ -201,7 +209,10 @@ function getTagAttributes(tok) {
     return attrs;
 }
 
-// returns {ast, # tokens consumed}
+////////////////////////////////////////////////////////////////////////////////
+// Generate an AST from the given list of tokens
+////////////////////////////////////////////////////////////////////////////////
+
 /**
  * A simple parser for my simple xml. It takes a list of
  * tokens produced by the lexer and generates a simple
@@ -264,8 +275,15 @@ function parseXML(tokens) {
     return {tree: ast, numTok: (i+1)};
 }
 
-// generate an ast for the XML that would be generated
-// for this game
+/**
+ * Generate an AST directly from the game. This AST is
+ * the same as calling
+ *
+ *      parseXML(lexXML(generateXML()))
+ *
+ * This is convenient because the AST is used as a representaion
+ * of the game state.
+ */
 function generateGameAST() {
     var game = {name: "game", attr: {}, children: []};
 
@@ -283,6 +301,10 @@ function generateGameAST() {
     return game;
 }
 
+/**
+ * Helper function that generates an AST representing
+ * the given element's category
+ */
 function generateCategoryAST(catCont) {
     var category = {name: "category", attr: {}, children: []};
 
@@ -299,6 +321,10 @@ function generateCategoryAST(catCont) {
     return category;
 }
 
+/**
+ * Helper function that generates an AST representing
+ * the given element's question, answer, and value.
+ */
 function generateQaAST(qaCont) {
     var qa = {name: "qa", attr: [], children: null};
 
@@ -314,7 +340,12 @@ function generateQaAST(qaCont) {
     return qa;
 }
 
-// tags whose ast node has null children are one-sided
+/**
+ * Generate XML from the given AST. This is used while
+ * saving to web storage.
+ *
+ * Tags whose ast node has null children are one-sided
+ */
 function astToXML(ast) {
     var ret = "";
 
@@ -340,6 +371,9 @@ function astToXML(ast) {
     return ret;
 }
 
+/**
+ * Generate XML to represent all games in the gamesList
+ */
 function generateAllGameXML() {
     var xml = "";
 
@@ -350,8 +384,10 @@ function generateAllGameXML() {
     return xml;
 }
 
-// debugging
-// returns a string representation of the AST
+/**
+ * This is a DEBUGGING function that produces a useful
+ * and easily read representation of the given AST.
+ */
 function printAST(ast) {
     var ret = "";
 

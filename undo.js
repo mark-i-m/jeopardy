@@ -3,13 +3,22 @@
  * changes to the game
  */
 
+// undo history
 var gameHistory = [];
+
+// current position in the history
 var historyIndex = 0;
 
-var saved = false; // whether this game has unsaved changes
+// whether the game has unsaved changes
+var saved = false;
 
-// <0 -> more recent
-// >0 -> older
+/**
+ * Advance this game's current position in the game
+ * history by delta.
+ *
+ * <0 => more recent
+ * >0 => older
+ */
 function historyMove(delta) {
     // make sure there is more history to undo or redo
     if (historyIndex + delta < 0 ||
@@ -27,6 +36,10 @@ function historyMove(delta) {
     updateUndoButtons();
 }
 
+/**
+ * update the history by adding ast as the
+ * most recent game state.
+ */
 function historyUpdate(ast) {
     // if the game has been undone,
     // we can now throw away the more
@@ -46,6 +59,9 @@ function historyUpdate(ast) {
     updateUndoButtons();
 }
 
+/**
+ * Clear all game history
+ */
 function historyClear() {
     gameHistory = [];
 }

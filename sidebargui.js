@@ -36,6 +36,9 @@ function populateGameList(games) {
     }
 }
 
+/**
+ * Update the games list gui in the sidebar
+ */
 function updateGamesList() {
     // write the xml to webstorage
     var xml = generateAllGameXML();
@@ -44,7 +47,10 @@ function updateGamesList() {
     populateGameList(gamesList);
 }
 
-// disable and enable the buttons for more aesthetics
+/**
+ * Disabled and enable the undo and redo buttons when
+ * it is or is not possible to undo/redo
+ */
 function updateUndoButtons() {
     var undo = document.getElementById("undo");
     var redo = document.getElementById("redo");
@@ -64,17 +70,25 @@ function updateUndoButtons() {
     }
 }
 
-// disable and enable the delete button for aesthetics
+/**
+ * Disable the delete button
+ */
 function disableDeleteButton() {
     var del = document.getElementById("delete");
     del.className = del.className.replace("enabled", "disabled");
 }
 
+/**
+ * Enable the delete button
+ */
 function enableDeleteButton() {
     var del = document.getElementById("delete");
     del.className = del.className.replace("disabled", "enabled");
 }
 
+/**
+ * Ask the user to save unsaved changes if there are any
+ */
 function confirmLeaveGame() {
     try {
         if (!saved) {

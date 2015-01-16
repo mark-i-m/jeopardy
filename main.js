@@ -142,6 +142,10 @@ function expandCategory(obj) {
     }
 }
 
+/**
+ * Take a snapshot of the current state of the game.
+ * Each snapshot goes to the front of the undo history.
+ */
 function snapshot() {
     console.log("snapshot");
 
@@ -178,6 +182,9 @@ function play() {
     screen.appendChild(table);
 }
 
+/**
+ * Undo once
+ */
 function undo() {
     console.log("undo");
 
@@ -187,6 +194,9 @@ function undo() {
     saved = false;
 }
 
+/**
+ * Redo once
+ */
 function redo() {
     console.log("redo");
 
@@ -196,6 +206,9 @@ function redo() {
     saved = false;
 }
 
+/**
+ * Save the current state of the game
+ */
 function save() {
     console.log("save");
 
@@ -219,6 +232,11 @@ function save() {
     enableDeleteButton();
 }
 
+/**
+ * Save this game as a different game.
+ * For new games, this has the same effect as
+ * just pressing save.
+ */
 function saveas() {
     console.log("saveas");
 
@@ -272,6 +290,9 @@ function loadGame(id) {
     enableDeleteButton();
 }
 
+/**
+ * Create and draw a new game to the editor
+ */
 function newGame() {
     // Ask the user to continue or wait and save the
     // current game
@@ -313,6 +334,10 @@ function newGame() {
     disableDeleteButton();
 }
 
+/**
+ * Delete the currently loaded game from the
+ * web storage.
+ */
 function delet() {
     // find the object
     var gameObj = findGame(gameId);

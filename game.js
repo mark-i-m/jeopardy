@@ -2,11 +2,14 @@
  * This file contains code for saving, restoring, undoing, etc.
  */
 
+// The list of saved games found in web storage
 var gamesList = [];
 
+// The name and id of the currently loaded game
 var gameName = "";
 var gameId = 0;
 
+// The next unused id
 var nextId = 0;
 
 /**
@@ -169,6 +172,9 @@ function findAllGames() {
     return {games: allGames, nextId: ++nid};
 }
 
+/**
+ * Find the game with the given id in the players object
+ */
 function findGame(id) {
     var game = null;
 

@@ -1,3 +1,8 @@
+/**
+ * This stylesheet contains rules for the game mode gui
+ */
+
+/* The exit button in game mode */
 #game-screen-close {
     width: 20px;
     height: 20px;
@@ -12,6 +17,10 @@
     cursor:pointer;
 }
 
+/*
+ * Game setup screen -- The first rule
+ * also contains a rule for the game-question-screen
+ */
 #game-setup, #game-question-screen {
     width:95%;
     height: calc(95% - 160px);
@@ -80,6 +89,7 @@
     background: rgba(0, 255, 0, 0.5);
 }
 
+/* Game table */
 #game-table {
     width:100%;
     height:calc(100% - 160px);
@@ -118,6 +128,7 @@
     color: purple;
 }
 
+/* Game question screen */
 #game-question-screen > div {
     width: 100%;
 }
@@ -165,6 +176,7 @@
     background:lightgreen;
 }
 
+/* Player scores list */
 #scores {
     width: 100%;
     height: 150px;

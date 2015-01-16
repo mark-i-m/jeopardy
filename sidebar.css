@@ -1,3 +1,8 @@
+/**
+ * This stylesheet contains rules for the side-bar
+ */
+
+/* Sidebar as a whole */
 #side-bar {
     width:140px;
     height: 100%;
@@ -14,20 +19,6 @@
 }
 
 #side-bar > div:hover {
-    background: rgba(255,255,255,0.5);
-}
-
-#game-name {
-    display: block;
-    border: 0px;
-    background: rgba(0,0,0,0);
-    border-radius: 3px;
-    margin-bottom: 20px;
-    padding: 5px;
-    width: calc(140px - 10px);
-}
-
-#game-name:hover {
     background: rgba(255,255,255,0.5);
 }
 
@@ -50,6 +41,22 @@
     background: rgba(0,0,0,0) !important;
 }
 
+/* Game name */
+#game-name {
+    display: block;
+    border: 0px;
+    background: rgba(0,0,0,0);
+    border-radius: 3px;
+    margin-bottom: 20px;
+    padding: 5px;
+    width: calc(140px - 10px);
+}
+
+#game-name:hover {
+    background: rgba(255,255,255,0.5);
+}
+
+/* List of saved games */
 #game-list, #game-list:hover {
     background: rgba(0,0,0,0.1);
     border-radius: 3px;

@@ -146,7 +146,9 @@ function toggleEditorGame() {
 // Code for manipulating the score list in game mode
 ////////////////////////////////////////////////////////////////////////////////
 
-// does not add to the DOM
+/**
+ * Create a player container but do not add it to the DOM
+ */
 function createPlayerContainer(p, s) {
     // create the container element
     var cont = document.createElement("div");
@@ -193,6 +195,9 @@ function createPlayerContainer(p, s) {
     return cont;
 }
 
+/**
+ * Updates the score list GUI from the players object
+ */
 function updateScoreList() {
     // get the scores element for convenience
     var scores = document.getElementById("scores");
@@ -215,6 +220,9 @@ function updateScoreList() {
 // Code to manipulate the setup screen
 ////////////////////////////////////////////////////////////////////////////////
 
+/**
+ * Reset the setup screen for the next use
+ */
 function resetSetup() {
     // get the elements
     var gameSetup = document.getElementById("game-setup");
