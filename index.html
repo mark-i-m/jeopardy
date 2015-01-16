@@ -5,17 +5,23 @@
 
         <title>Jeopardy</title>
 
-        <script type="text/javascript" src="src/gui/gui.js"></script>
-        <script type="text/javascript" src="src/gui/main.js"></script>
-        <script type="text/javascript" src="src/xml/file.js"></script>
-        <script type="text/javascript" src="src/game/game.js"></script>
-        <script type="text/javascript" src="src/game/undo.js"></script>
-        <script type="text/javascript" src="src/game/play.js"></script>
+        <!-- Logic code -->
+        <script type="text/javascript" src="main.js"></script>
+        <script type="text/javascript" src="game.js"></script>
+        <script type="text/javascript" src="play.js"></script>
+        <script type="text/javascript" src="undo.js"></script>
+        <script type="text/javascript" src="xml.js"></script>
 
-        <link rel="stylesheet" type="text/css" href="src/gui/main.css">
-        <link rel="stylesheet" type="text/css" href="src/gui/sidebar.css">
-        <link rel="stylesheet" type="text/css" href="src/gui/editor.css">
-        <link rel="stylesheet" type="text/css" href="src/gui/gamemode.css">
+        <!-- GUI code -->
+        <script type="text/javascript" src="editorgui.js"></script>
+        <script type="text/javascript" src="gamegui.js"></script>
+        <script type="text/javascript" src="sidebargui.js"></script>
+
+        <!-- Style sheets -->
+        <link rel="stylesheet" type="text/css" href="main.css">
+        <link rel="stylesheet" type="text/css" href="sidebar.css">
+        <link rel="stylesheet" type="text/css" href="editor.css">
+        <link rel="stylesheet" type="text/css" href="gamemode.css">
     </head>
 
     <body onload="initGame();">

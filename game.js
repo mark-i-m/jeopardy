@@ -2,6 +2,13 @@
  * This file contains code for saving, restoring, undoing, etc.
  */
 
+var gamesList = [];
+
+var gameName = "";
+var gameId = 0;
+
+var nextId = 0;
+
 /**
  * Removes the current main-content div and replaces it with
  * one generated from the given ast

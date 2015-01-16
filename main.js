@@ -1,14 +1,10 @@
 /*
- * This file contains all code that directly manipulates
- * the GUI or is called by the GUI.
+ * This file contains all code that is directly called by the GUI.
  */
 
-var gamesList = [];
-
-var gameName = "";
-var gameId = 0;
-
-var nextId = 0;
+////////////////////////////////////////////////////////////////////////////////
+// Code to initialize the gui
+////////////////////////////////////////////////////////////////////////////////
 
 /**
  * Create an initial table setup with 1 row and column
@@ -27,29 +23,9 @@ function initGame() {
     newGame();
 }
 
-/**
- * Expand or collapse (toggles) the given category.
- * @param obj the html obj of the category-head element
- */
-function expandCategory(obj) {
-    // the little arrow before the category name
-    var arrow = obj.getElementsByClassName("category-head-diamond")[0];
-
-    // category-qas element
-    var qas = obj.nextElementSibling.style;
-
-    // whether the block is expanded or not
-    var isExpanded = qas.display != "none";
-    if(isExpanded) {
-        qas.display = "none";
-        arrow.innerHTML = "&#9671;";
-        obj.className = obj.className.replace("expanded", "collapsed");
-    } else {
-        qas.display = "block";
-        arrow.innerHTML = "&#9672;";
-        obj.className = obj.className.replace("collapsed","expanded");
-    }
-}
+////////////////////////////////////////////////////////////////////////////////
+// Code to customize the game
+////////////////////////////////////////////////////////////////////////////////
 
 /**
  * Creates a new category and adds it to the DOM in the appropriate
@@ -138,6 +114,51 @@ function setGameName(name) {
     document.getElementById("game-name").value = gameName;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+// Misc code for the editor the gui
+////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Expand or collapse (toggles) the given category.
+ * @param obj the html obj of the category-head element
+ */
+function expandCategory(obj) {
+    // the little arrow before the category name
+    var arrow = obj.getElementsByClassName("category-head-diamond")[0];
+
+    // category-qas element
+    var qas = obj.nextElementSibling.style;
+
+    // whether the block is expanded or not
+    var isExpanded = qas.display != "none";
+    if(isExpanded) {
+        qas.display = "none";
+        arrow.innerHTML = "&#9671;";
+        obj.className = obj.className.replace("expanded", "collapsed");
+    } else {
+        qas.display = "block";
+        arrow.innerHTML = "&#9672;";
+        obj.className = obj.className.replace("collapsed","expanded");
+    }
+}
+
+function snapshot() {
+    console.log("snapshot");
+
+    // generate ast
+    var ast = generateGameAST();
+
+    // save it in history
+    historyUpdate(ast);
+
+    // this game now has unsaved changes
+    saved = false;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Code CALLED by the sidebar buttons
+////////////////////////////////////////////////////////////////////////////////
+
 /**
  * Switches to game mode. This function generates a game table
  * element, adds it to the DOM, and makes it visible to the
@@ -157,134 +178,22 @@ function play() {
     screen.appendChild(table);
 }
 
-/**
- * Switch to editor mode. This function removes the game table
- * from the DOM. And makes the editor visible again.
- */
-function gameExit() {
-    console.log("edit");
+function undo() {
+    console.log("undo");
 
-    // toggle editor mode
-    toggleEditorGame();
+    historyMove(1);
 
-    // remove the table
-    var screen = document.getElementById("game-table");
-    screen.removeChild(screen.firstElementChild);
-
-    // close question string, just in case
-    closeQa();
-
-    // reset the scores
-    players = {};
-    updateScoreList();
-
-    // reset the setup screen
-    resetSetup();
+    // this game now has unsaved changes
+    saved = false;
 }
 
-// game setup in game mode
-function addPlayer (name) {
-    // validate player input
-    if (name === "" || name === undefined) {
-        alert("Player name cannot be empty");
-        return;
-    }
-    if (players.hasOwnProperty(name)) {
-        alert("This player already exists");
-        return;
-    }
+function redo() {
+    console.log("redo");
 
-    // display the player
-    document.getElementById("player-list").innerHTML +=
-        "<span>" + name + "</span>";
+    historyMove(-1);
 
-    // players start with score 0
-    players[name] = 0;
-}
-
-// start game
-function startGame () {
-    // make sure there is at least one player
-    // this is a bit hacky, but it works
-    var atLeastOne = false;
-    for(prop in players) {
-        atLeastOne = true;
-        break;
-    }
-    if (!atLeastOne) {
-        alert("There must be at least one player");
-        return;
-    }
-
-    // update the score list
-    updateScoreList();
-
-    // hide the setup screen
-    document.getElementById("game-setup").style.display = "none";
-}
-
-/**
- * Sets the question, answer, and value strings of the
- * question screen in game mode.
- *
- * The question and answer strings should be escaped,
- * since this allows more freedom to the user.
- */
-function setQa(value, question, answer) {
-    question = unescape(question);
-    answer = unescape(answer);
-
-    document.getElementById("game-q-label").innerHTML =
-        "$" + value;
-
-    document.getElementById("game-q").innerHTML =
-        question;
-
-    document.getElementById("game-a").innerHTML =
-        answer;
-
-    currentQuestionValue = value;
-}
-
-/**
- * Show the question screen of in game mode
- */
-function showQa() {
-    document.getElementById("game-question-screen")
-        .style.display = "block";
-}
-
-/**
- * Hide and reset the question screen in game mode
- */
-function closeQa() {
-    document.getElementById("game-question-screen")
-        .style.display = "none";
-    document.getElementById("game-a")
-        .style.display = "none";
-    document.getElementById("game-q-answer")
-        .style.display = "inline-block";
-
-    currentQuestionValue = 0;
-}
-
-/**
- * Mark the selected question as marked on the
- * game table in game mode
- */
-function markQa(ele) {
-    ele.className = ele.className ? " marked-q" : "marked-q";
-}
-
-/**
- * Show the answer of the question on the question
- * screen in game mode
- */
-function showAnswer() {
-    document.getElementById("game-a")
-        .style.display = "block";
-    document.getElementById("game-q-answer")
-        .style.display = "none";
+    // this game now has unsaved changes
+    saved = false;
 }
 
 function save() {
@@ -436,33 +345,144 @@ function delet() {
     disableDeleteButton();
 }
 
-function undo() {
-    console.log("undo");
+////////////////////////////////////////////////////////////////////////////////
+// Code to enter and exit game mode
+////////////////////////////////////////////////////////////////////////////////
 
-    historyMove(1);
+// start game
+function startGame () {
+    // make sure there is at least one player
+    // this is a bit hacky, but it works
+    var atLeastOne = false;
+    for(prop in players) {
+        atLeastOne = true;
+        break;
+    }
+    if (!atLeastOne) {
+        alert("There must be at least one player");
+        return;
+    }
 
-    // this game now has unsaved changes
-    saved = false;
+    // update the score list
+    updateScoreList();
+
+    // hide the setup screen
+    document.getElementById("game-setup").style.display = "none";
 }
 
-function redo() {
-    console.log("redo");
+/**
+ * Switch to editor mode. This function removes the game table
+ * from the DOM. And makes the editor visible again.
+ */
+function gameExit() {
+    console.log("edit");
 
-    historyMove(-1);
+    // toggle editor mode
+    toggleEditorGame();
 
-    // this game now has unsaved changes
-    saved = false;
+    // remove the table
+    var screen = document.getElementById("game-table");
+    screen.removeChild(screen.firstElementChild);
+
+    // close question string, just in case
+    closeQa();
+
+    // reset the scores
+    players = {};
+    updateScoreList();
+
+    // reset the setup screen
+    resetSetup();
 }
 
-function snapshot() {
-    console.log("snapshot");
+////////////////////////////////////////////////////////////////////////////////
+// Code for the setup screen gui
+////////////////////////////////////////////////////////////////////////////////
 
-    // generate ast
-    var ast = generateGameAST();
+// game setup in game mode
+function addPlayer (name) {
+    // validate player input
+    if (name === "" || name === undefined) {
+        alert("Player name cannot be empty");
+        return;
+    }
+    if (players.hasOwnProperty(name)) {
+        alert("This player already exists");
+        return;
+    }
 
-    // save it in history
-    historyUpdate(ast);
+    // display the player
+    document.getElementById("player-list").innerHTML +=
+        "<span>" + name + "</span>";
 
-    // this game now has unsaved changes
-    saved = false;
+    // players start with score 0
+    players[name] = 0;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Code for the question screen gui
+////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Show the question screen of in game mode
+ */
+function showQa() {
+    document.getElementById("game-question-screen")
+        .style.display = "block";
+}
+
+/**
+ * Hide and reset the question screen in game mode
+ */
+function closeQa() {
+    document.getElementById("game-question-screen")
+        .style.display = "none";
+    document.getElementById("game-a")
+        .style.display = "none";
+    document.getElementById("game-q-answer")
+        .style.display = "inline-block";
+
+    currentQuestionValue = 0;
+}
+
+/**
+ * Show the answer of the question on the question
+ * screen in game mode
+ */
+function showAnswer() {
+    document.getElementById("game-a")
+        .style.display = "block";
+    document.getElementById("game-q-answer")
+        .style.display = "none";
+}
+
+/**
+ * Sets the question, answer, and value strings of the
+ * question screen in game mode.
+ *
+ * The question and answer strings should be escaped,
+ * since this allows more freedom to the user.
+ */
+function setQa(value, question, answer) {
+    question = unescape(question);
+    answer = unescape(answer);
+
+    document.getElementById("game-q-label").innerHTML =
+        "$" + value;
+
+    document.getElementById("game-q").innerHTML =
+        question;
+
+    document.getElementById("game-a").innerHTML =
+        answer;
+
+    currentQuestionValue = value;
+}
+
+/**
+ * Mark the selected question as marked on the
+ * game table in game mode
+ */
+function markQa(ele) {
+    ele.className = ele.className ? " marked-q" : "marked-q";
 }
