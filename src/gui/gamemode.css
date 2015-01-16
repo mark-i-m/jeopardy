@@ -12,9 +12,22 @@
     cursor:pointer;
 }
 
+#game-setup, #game-question-screen {
+    width:95%;
+    height:95%;
+    padding: 0.5%;
+    top: 2%;
+    left: 2%;
+    position:fixed;
+    background: #cecece;
+    border-radius:10px;
+    border: 1px solid grey;
+    z-index: 10;
+}
+
 #game-table {
     width:100%;
-    height:100%;
+    height:calc(100% - 100px);
     background: #ececec;
     overflow:auto;
 }
@@ -62,17 +75,6 @@
     color: purple;
 }
 
-#game-question-screen {
-    width:95%;
-    height:95%;
-    padding: 0.5%;
-    top: 2%;
-    left: 2%;
-    position:fixed;
-    background: #cecece;
-    border-radius:10px;
-}
-
 #game-question-screen > div {
     width: 100%;
 }
@@ -118,5 +120,23 @@
 }
 
 #scores {
+    width: 100%;
+    height: 100px;
+    background: #cecece;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
 
+#scores > div {
+    display: table;
+    width: 100%;
+    height:100%;
+}
+
+#scores .score {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 24pt;
+    padding: 0px 50px;
 }
