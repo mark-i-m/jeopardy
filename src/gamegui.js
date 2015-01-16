@@ -216,6 +216,35 @@ function updateScoreList() {
     }
 }
 
+/**
+ * Updates the score list GUI for the given player
+ */
+function updatePlayerScore(player) {
+    // get the scores element for convenience
+    var score = document.getElementById("player-" + player);
+
+    // update the score
+    score.innerHTML = "$" + players[player];
+}
+
+/**
+ * Highlights the player's score in the given color
+ */
+function highlightPlayerScore(player, color) {
+    // get the scores element for convenience
+    var score = document.getElementById("player-" + player);
+
+    // change color immediately
+    score.style.transition = "0s";
+    score.style.background = color;
+
+    // fade out to normal color
+    setTimeout(function(){
+        score.style.transition = "2s";
+        score.style.background = "";
+    }, 500);
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // Code to manipulate the setup screen
 ////////////////////////////////////////////////////////////////////////////////

@@ -18,7 +18,10 @@ function increaseScore(player) {
     players[player] += currentQuestionValue;
 
     // update score list
-    updateScoreList();
+    updatePlayerScore(player);
+
+    // highlight the new score
+    highlightPlayerScore(player, "lightgreen");
 }
 
 /**
@@ -30,5 +33,8 @@ function decreaseScore(player) {
     players[player] -= currentQuestionValue;
 
     // update score list
-    updateScoreList();
+    updatePlayerScore(player);
+
+    // highlight the new score
+    highlightPlayerScore(player, "pink");
 }
