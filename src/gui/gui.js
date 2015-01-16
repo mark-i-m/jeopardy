@@ -357,3 +357,14 @@ function updateUndoButtons() {
         redo.className = redo.className.replace("disabled", "enabled");
     }
 }
+
+// disable and enable the delete button for aesthetics
+function disableDeleteButton() {
+    var del = document.getElementById("delete");
+    del.className = del.className.replace("enabled", "disabled");
+}
+
+function enableDeleteButton() {
+    var del = document.getElementById("delete");
+    del.className = del.className.replace("disabled", "enabled");
+}

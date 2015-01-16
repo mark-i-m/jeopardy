@@ -253,6 +253,9 @@ function save() {
     saved = true;
 
     updateGamesList();
+
+    // enable the delete button
+    enableDeleteButton();
 }
 
 function saveas() {
@@ -303,6 +306,9 @@ function loadGame(id) {
 
     // the game has no changes yet
     saved = true;
+
+    // enable the delete button
+    enableDeleteButton();
 }
 
 function newGame() {
@@ -341,6 +347,9 @@ function newGame() {
 
     // game has never been saved
     saved = false;
+
+    // disable the delete button
+    disableDeleteButton();
 }
 
 function delet() {
@@ -370,6 +379,9 @@ function delet() {
 
     // update the gui
     updateGamesList();
+
+    // disable the delete button
+    disableDeleteButton();
 }
 
 function undo() {
