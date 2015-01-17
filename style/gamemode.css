@@ -54,12 +54,12 @@
     float: right;
     width: 100px;
     text-align: center;
-    background: rgba(255,255,255,0.2);
+    background: rgba(0,128,255,0.2);
     cursor: pointer;
 }
 
 #game-setup-add-player-button:hover {
-    background: rgba(255,255,255,0.5);
+    background: rgba(0,128,255,0.5);
 }
 
 #game-setup-add-player-button + input{
@@ -82,6 +82,10 @@
     padding: 5px 0px;
     height: 20px;
     display:block;
+}
+
+#player-list > span:not(:last-child) {
+    border-bottom: 1px solid #b3b3b3;
 }
 
 #game-setup-done-button {
