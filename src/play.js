@@ -14,6 +14,10 @@ var currentQuestionValue = 0;
  * currentQuestionValue and update the GUI
  */
 function increaseScore(player) {
+    if (currentQuestionValue < 0) {
+        currentQuestionValue *= -1;
+    }
+
     // change score value
     players[player] += currentQuestionValue;
 
@@ -29,14 +33,17 @@ function increaseScore(player) {
  * currentQuestionValue and update the GUI
  */
 function decreaseScore(player) {
+    if (currentQuestionValue > 0) {
+        currentQuestionValue *= -1;
+    }
+
     // change score value
-    players[player] -= currentQuestionValue;
+    players[player] += currentQuestionValue;
 
     // update score list
     updatePlayerScore(player);
 
     // highlight the new score
-    currentQuestionValue = -currentQuestionValue;
     highlightScore(player);
 }
 
