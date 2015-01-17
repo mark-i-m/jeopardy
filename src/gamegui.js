@@ -3,6 +3,9 @@
  * while entering, running, and exiting game mode.
  */
 
+// internal variable that stores the currently active game table cell
+var currentGameTableCell = null;
+
 ////////////////////////////////////////////////////////////////////////////////
 // Code to manipulate the game table
 ////////////////////////////////////////////////////////////////////////////////
@@ -120,6 +123,19 @@ function createGameCell(ele) {
     cell.innerHTML = "$" + value;
 
     return cell;
+}
+
+/**
+ * Marks the question as answered in the game table. The element
+ * in the table is given by the currentGameTableCell variable
+ */
+function markQaAnswered() {
+    // mark visually
+    currentGameTableCell.className = currentGameTableCell.className ? " marked-q" : "marked-q";
+
+    // make any future access show the question directly
+    var onclick = currentGameTableCell.getAttribute("onclick");
+    currentGameTableCell.setAttribute("onclick", onclick + " showAnswer();");
 }
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -509,6 +509,9 @@ function showAnswer() {
         .style.display = "none";
     document.getElementById("game-q-check")
         .style.display = "none";
+
+    // mark the question as answered
+    markQaAnswered();
 }
 
 /**
@@ -572,5 +575,7 @@ function setQa(value, question, answer) {
  * game table in game mode
  */
 function markQa(ele) {
-    ele.className = ele.className ? " marked-q" : "marked-q";
+    // store this element so that we can mark the question
+    // as answer when the appropriate button is clicked
+    currentGameTableCell = ele;
 }
