@@ -21,7 +21,7 @@ function increaseScore(player) {
     updatePlayerScore(player);
 
     // highlight the new score
-    highlightPlayerScore(player, "lightgreen");
+    highlightScore(player);
 }
 
 /**
@@ -36,5 +36,20 @@ function decreaseScore(player) {
     updatePlayerScore(player);
 
     // highlight the new score
-    highlightPlayerScore(player, "pink");
+    currentQuestionValue = -currentQuestionValue;
+    highlightScore(player);
+}
+
+/**
+ * Helper function that highlights the
+ * score with the right color
+ */
+function highlightScore(player) {
+    if (currentQuestionValue < 0) {
+        highlightPlayerScore(player, "pink");
+    } else if (currentQuestionValue > 0) {
+        highlightPlayerScore(player, "lightgreen");
+    } else {
+        highlightPlayerScore(player, "orange");
+    }
 }
