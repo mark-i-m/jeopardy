@@ -69,13 +69,14 @@
 }
 
 #player-list {
-    width: 100%;
+    width: calc(100% - 10px);
     text-align: center;
     border-radius: 5px;
     margin: 5px 0px;
     background: #ececec;
-    max-height: calc(100% - 10px - 30px - 30px);
+    max-height: calc(100% - 10px - 10px - 30px - 30px);
     overflow: auto;
+    padding: 5px;
 }
 
 #player-list > span {
