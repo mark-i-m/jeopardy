@@ -466,13 +466,21 @@ function showQa() {
  * Hide and reset the question screen in game mode
  */
 function closeQa() {
+    // hide the screen
     document.getElementById("game-question-screen")
         .style.display = "none";
+
+    // hide the answer
     document.getElementById("game-a")
         .style.display = "none";
+    document.getElementById("game-user-a")
+        .style.display = "none";
+    document.getElementById("game-user-a")
+        .innerHTML = "";
     document.getElementById("game-q-answer")
         .style.display = "inline-block";
 
+    // display the answer box
     document.getElementById("game-q-check")
         .style.display = "inline-block";
     document.getElementById("game-answer-box")
@@ -486,9 +494,20 @@ function closeQa() {
  * screen in game mode
  */
 function showAnswer() {
+    // show the correct answer
     document.getElementById("game-a")
         .style.display = "block";
+
+    // show the user answer
+    document.getElementById("game-user-a")
+        .style.display = "block";
+    document.getElementById("game-answer-box")
+        .style.display = "none";
+
+    // hide the buttons
     document.getElementById("game-q-answer")
+        .style.display = "none";
+    document.getElementById("game-q-check")
         .style.display = "none";
 }
 
@@ -518,11 +537,11 @@ function checkAnswer() {
         }
     }
 
+    document.getElementById("game-user-a")
+        .innerHTML = "You answered: " + answer;
+
     // show the answer, also
     showAnswer();
-
-    document.getElementById("game-q-check")
-        .style.display = "none";
 }
 
 /**
