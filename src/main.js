@@ -484,6 +484,8 @@ function closeQa() {
     document.getElementById("game-q-check")
         .style.display = "inline-block";
     document.getElementById("game-answer-box")
+        .style.display = "block";
+    document.getElementById("game-answer-box")
         .value = "";
 
     currentQuestionValue = 0;
