@@ -35,10 +35,10 @@ function createGameTable() {
         var header = createGameHeader(catContainers[category]);
         headerRow.appendChild(header);
 
-        // get all questions
-        var qaContainers = catContainers[category]
+        // get all questions and sort by value
+        var qaContainers = sortQasByValue(catContainers[category]
             .getElementsByClassName("category-qas")[0]
-            .getElementsByClassName("qa-container");
+            .getElementsByClassName("qa-container"));
 
         var currentRows = 0; // how many rows encountered in the current category
 
@@ -75,6 +75,37 @@ function createGameTable() {
 }
 
 /**
+ * Helper method that sorts a bunch of qa-containers by the
+ * question value... this is a quick sort
+ */
+function sortQasByValue(qas) {
+    // if there is only one element
+    if (qas.length == 1) {
+        return [qas[0]];
+    }
+
+    // get an array from the html collection
+    var array = [].slice.call(qas);
+
+    // pick a middle element
+    var middle = parseInt(getQaValue(array[Math.floor(array.length / 2)]));
+
+    // get less and greater arrays and sort them
+    var less = array.filter(function (x) {return getQaValue(x) <= middle});
+    var greater = array.filter(function (x) {return getQaValue(x) > middle});
+
+    // put them back together
+    return sortQasByValue(less).concat(sortQasByValue(greater));
+}
+
+/**
+ * Helper method that get the question value from a qa-container
+ */
+function getQaValue(qa) {
+    return parseInt(qa.getElementsByTagName("input")[0].value);
+}
+
+/**
  * Generates the <th> element of the game mode table.
  * This is a helper method for the createGameTable method.
  */
@@ -100,11 +131,11 @@ function createGameHeader(ele) {
 function createGameCell(ele) {
     var cell = document.createElement("td");
 
-    var value = ele.getElementsByTagName("input")[0].value;
+    var value = getQaValue(ele);
     var question = ele.getElementsByTagName("textarea")[0].value;
     var answer = ele.getElementsByTagName("textarea")[1].value;
 
-    if (value == "") {
+    if (value === null || value === undefined || isNaN(value)) {
         value = "---";
     }
 
