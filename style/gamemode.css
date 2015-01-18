@@ -141,6 +141,11 @@
     background: rgba(255,255,255,0.5);
 }
 
+.game-table-filler:hover {
+    background: rgba(0,0,0,0) !important;
+    cursor: default !important;
+}
+
 #game-table .marked-q {
     color: #cecece;
     cursor: default;

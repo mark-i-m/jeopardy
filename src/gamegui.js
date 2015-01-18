@@ -56,7 +56,7 @@ function createGameTable() {
 
                 // fill in the "bald spots"
                 for (var i = 0; i < cols-1; i++){
-                    table.childNodes[currentRows].appendChild(document.createElement("td"));
+                    table.childNodes[currentRows].appendChild(createFillerCell());
                 }
             }
 
@@ -69,12 +69,25 @@ function createGameTable() {
 
         // fill in more "bald spots"
         for (var i = qaContainers.length + 1; i <= rows; i++) {
-            table.childNodes[i].appendChild(document.createElement("td"));
+            table.childNodes[i].appendChild(createFillerCell());
         }
     }
 
     // return the table
     return table;
+}
+
+/**
+ * Generate an empty <td> element to fill in "bald" spots
+ * in the game table.
+ * This is a helper method for the createGameTable method.
+ */
+function createFillerCell() {
+    var filler = document.createElement("td");
+
+    filler.setAttribute("class", "game-table-filler");
+
+    return filler;
 }
 
 /**
