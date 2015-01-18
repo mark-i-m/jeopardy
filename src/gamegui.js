@@ -36,9 +36,12 @@ function createGameTable() {
         headerRow.appendChild(header);
 
         // get all questions and sort by value
-        var qaContainers = sortQasByValue(catContainers[category]
+        var qaContainers = [].slice.call(catContainers[category]
             .getElementsByClassName("category-qas")[0]
-            .getElementsByClassName("qa-container"));
+            .getElementsByClassName("qa-container"))
+            .sort(function (qa1, qa2) {
+                return getQaValue(qa1) - getQaValue(qa2);
+            } );
 
         var currentRows = 0; // how many rows encountered in the current category
 
@@ -72,37 +75,6 @@ function createGameTable() {
 
     // return the table
     return table;
-}
-
-/**
- * Helper method that sorts a bunch of qa-containers by the
- * question value... this is a quick sort
- */
-function sortQasByValue(qas) {
-    // if there is only one element
-    if (qas.length == 1) {
-        return [qas[0]];
-    }
-
-    // get an array from the html collection
-    var array = [].slice.call(qas);
-
-    // pick a middle element
-    var middle = parseInt(getQaValue(array[Math.floor(array.length / 2)]));
-
-    // get less and greater arrays and sort them
-    var less = array.filter(function (x) {return getQaValue(x) <= middle});
-    var greater = array.filter(function (x) {return getQaValue(x) > middle});
-
-    // put them back together
-    return sortQasByValue(less).concat(sortQasByValue(greater));
-}
-
-/**
- * Helper method that get the question value from a qa-container
- */
-function getQaValue(qa) {
-    return parseInt(qa.getElementsByTagName("input")[0].value);
 }
 
 /**
@@ -154,6 +126,13 @@ function createGameCell(ele) {
     cell.innerHTML = "$" + value;
 
     return cell;
+}
+
+/**
+ * Helper method that get the question value from a qa-container
+ */
+function getQaValue(qa) {
+    return parseInt(qa.getElementsByTagName("input")[0].value);
 }
 
 /**
